@@ -16,7 +16,6 @@ This is a personal portfolio website built with **React** and **Vite**. It showc
 - [Vite](https://vitejs.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [GSAP](https://greensock.com/gsap/)
-- [React Router](https://reactrouter.com/)
 
 ## Getting Started
 
@@ -42,13 +41,13 @@ This is a personal portfolio website built with **React** and **Vite**. It showc
 ## Project Structure
 
 src/
-  Components/      # All React components (Intro, Navbar, Skills, Education, Projects, Contact)
-  assets/          # Images and logos
-  [App.jsx](http://_vscodecontentref_/0)          # Main app component with routing
-  [main.jsx](http://_vscodecontentref_/1)         # Entry point
-  [index.css](http://_vscodecontentref_/2)        # Tailwind and global styles
-public/
-  Images/          # Public images (profile, favicon, etc.)
+  [Components/      # All React components (Intro, Navbar, Skills, Education, Projects, Contact)]
+  [assets/          # Images and logos]
+  [[App.jsx](http://_vscodecontentref_/0)          # Main app component with routing]
+  [[main.jsx](http://_vscodecontentref_/1)         # Entry point]
+  [[index.css](http://_vscodecontentref_/2)        # Tailwind and global styles]
+  [public/]
+  [Images/]          # Public images (profile, favicon, etc.)
 
 
 ## License

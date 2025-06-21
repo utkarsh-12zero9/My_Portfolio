@@ -2,12 +2,7 @@ import { FaPhoneAlt, FaEnvelope, FaGithub, FaLinkedin, FaCode } from "react-icon
 
 function Contact() {
     const contacts = [
-        {
-            icon: <FaPhoneAlt size={22} />,
-            label: "Phone",
-            value: "+91-7897573300",
-            link: "tel:+917897573300"
-        },
+        
         {
             icon: <FaEnvelope size={22} />,
             label: "Email",
