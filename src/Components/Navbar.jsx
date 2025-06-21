@@ -6,7 +6,7 @@ function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <nav className='h-[10vh] flex items-center text-white mt-5 font-serif px-4'>
+        <nav className='bg-gray-800 h-[10vh] flex items-center text-white mt-5 font-serif px-9 rounded-3xl'>
             <div className='w-[50%] text-3xl font-bold'>
                 <Link to="/" className="text-red-500 hover:text-white transition-all duration-200">
                     Portfolio
@@ -43,6 +43,9 @@ function Navbar() {
                     </li>
                     <li>
                         <Link to="/contact" className={property}>Contact</Link>
+                    </li>
+                    <li>
+                        <Link to="/resume" className={property} onClick={() => setMenuOpen(false)}>Resume</Link>
                     </li>
                 </ul>
             </div>
