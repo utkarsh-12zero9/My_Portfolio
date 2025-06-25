@@ -1,22 +1,24 @@
-
-import Intro from "./Components/Intro";
-import Navbar from "./Components/Navbar";
-import Skills from "./Components/Skills";
-import Education from "./Components/Education";
+import Hero from "./Components/Hero";
+import Header from "./Components/Header";
+import About from "./Components/About";
 import Projects from "./Components/Projects";
 import Contact from "./Components/Contact";
+import Footer from "./Components/Footer";
 
-function App() {
-  return (
-    <div className="px-4 sm:px-6 lg:px-20 bg-[#0f0f0f]">
-      <Navbar />
-      <Intro />
-      <Education />
-      <Skills />
-      <Projects />
-      <Contact />
-    </div>
-  );
-}
+
+const App = () => {
+    return (
+        <div className="relative min-h-screen flex flex-col bg-[#0A0A0A] text-white">
+            <Header />
+            <main className="flex-1">
+                <Hero />
+                <About />
+                <Projects />
+                <Contact />
+            </main>
+            <Footer />
+        </div>
+    );
+};
 
 export default App;

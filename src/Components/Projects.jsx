@@ -1,120 +1,103 @@
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import refokus from '../assets/Images/refokusLandingPage.png';
-import tala from '../assets/Images/TalaLandingPage.png';
-import bubble from '../assets/Images/BubblegameLandingPage.png';
-import { useGSAP } from "@gsap/react";
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import Tala from "../assets/Images/TalaLandingPage.png";
+import Refokus from "../assets/Images/RefokusLandingPage.png";
+import BubbleGame from "../assets/Images/BubbleGameLandingPage.png";
 
-function Projects() {
-    const headingRef = useRef(null);
-    const projectRefs = useRef([]);
-
+const Projects = () => {
     const projects = [
         {
-            title: "Refokus UI Clone",
-            landingPageImg: refokus,
-            date: "February 2025",
-            tech: ["ReactJS", "Tailwind CSS", "JavaScript", "Framer Motion"],
-            description: "Cloned the Refokus website UI using React.js, replicating its modern design and animations. Delivered pixel-perfect accuracy and optimized performance for seamless cross-device functionality.",
-            codeLink: "https://github.com/utkarsh-12zero9/Refokus-UI-Clone",
-            liveLink: "https://refokus-ui-cl-git-463446-utkarsh-kumar-singhs-projects-f2e44fce.vercel.app/"
+            title: 'Refokus UI Clone',
+            description: 'A responsive UI clone of the Refokus website, built with React and Tailwind CSS.',
+            link: 'https://refokus-ui-cl-git-463446-utkarsh-kumar-singhs-projects-f2e44fce.vercel.app/',
+            image: Refokus,
         },
         {
-            title: "TALA UI Clone",
-            landingPageImg: tala,
-            date: "January 2025",
-            tech: ["HTML", "CSS", "JavaScript", "GSAP"],
-            description: "Cloned a website of TALA (fruit-based snacks) using HTML, CSS, and JS. Added interactive UI and smooth scroll animations with GSAP for enhanced visuals.",
-            codeLink: "https://github.com/utkarsh-12zero9/Tala-UI-Clone",
-            liveLink: "https://utkarsh-12zero9.github.io/Tala-UI-Clone/"
+            title: 'TALA UI Clone',
+            description: 'A modern UI clone of the TALA website, focusing on pixel-perfect design with HTML/CSS.',
+            link: 'https://utkarsh-12zero9.github.io/Tala-UI-Clone/',
+            image: Tala,
         },
         {
-            title: "Bubble Game",
-            landingPageImg: bubble,
-            date: "December 2024",
-            tech: ["HTML", "CSS", "Bootstrap", "JavaScript"],
-            description: "Built a simple bubble popping game while learning JavaScript. Improved logical thinking and explored event bubbling for DOM interactions.",
-            codeLink: "https://github.com/utkarsh-12zero9/Bubble-Game",
-            liveLink: "https://github.com/utkarsh-12zero9/Bubble-Game"
-        }
+            title: 'Bubble Game',
+            description: 'A fun interactive bubble-popping game developed with JavaScript and Canvas.',
+            link: 'https://github.com/utkarsh-12zero9/Bubble-Game',
+            image: BubbleGame,
+        },
+        {
+            title: 'Upcoming Project',
+            description: 'Stay tuned for my next exciting project!',
+            link: '#',
+            image: '',
+        },
     ];
 
-    useGSAP(() => {
-        const tl = gsap.timeline();
-        tl.from(headingRef.current, {
-            opacity: 0,
-            y: -40,
-            duration: 1,
-            ease: "power2.out"
-        });
-        return tl;
-    }, [headingRef]);
-    useGSAP(() => {
-        const tl = gsap.timeline();
-        tl.from(projectRefs.current, {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.3,
-            ease: "power2.out",
-        });
-        return tl;
-    }, [projectRefs]);
+    const sectionRef = useRef(null);
+    const inView = useInView(sectionRef, { once: true, margin: '-100px' });
 
     return (
-        <div className="min-h-[90vh] text-white py-16 px-4 sm:px-6 lg:px-8">
-            <h2
-                ref={headingRef}
-                className="text-4xl font-bold font-serif text-white border-b-red-400 border-b-2 mb-8 "
-            >
-                Projects
-            </h2>
+        <section
+            id="projects"
+            className="min-h-[90vh] bg-transparent relative overflow-hidden py-12 sm:py-16"
+            ref={sectionRef}
+        >
+            {/* Animated Background Effect */}
+            <motion.div
+                className="absolute inset-0 z-0 pointer-events-none"
+                animate={{
+                    background: [
+                        'radial-gradient(circle, rgba(0, 212, 180, 0.1) 0%, rgba(123, 63, 228, 0.1) 100%)',
+                        'radial-gradient(circle, rgba(123, 63, 228, 0.1) 0%, rgba(0, 212, 180, 0.1) 100%)',
+                    ],
+                }}
+                transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
+            />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projects.map((project, index) => (
-                    <div
-                        key={index}
-                        ref={el => projectRefs.current[index] = el}
-                        className="bg-[#1f1f1f] p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-shadow duration-300"
-                    >
-                        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                        <img 
-                            src={project.landingPageImg} 
-                            alt={`${project.title} landing page`} 
-                            className="w-full h-40 object-cover rounded-md mb-2"
-                        />
-                        <div className="mb-2 text-sm text-gray-400">{project.date}</div>
-                        <p className="text-sm mb-4">{project.description}</p>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                            {project.tech.map((tech, idx) => (
-                                <span key={idx} className="bg-red-500 text-white text-xs px-2 py-1 rounded">
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                        <div className="flex gap-4">
+            <div className="container mx-auto px-4 sm:px-6 md:px-20">
+                <motion.h2
+                    className="text-3xl sm:text-4xl md:text-5xl font-['Montserrat'] font-bold text-white mb-8 sm:mb-12 text-center transform -skew-x-6 drop-shadow-md"
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={inView ? { y: 0, opacity: 1 } : {}}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                >
+                    My Projects
+                </motion.h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    {projects.map((project, index) => (
+                        <motion.div
+                            key={project.title}
+                            className="bg-[#1A1A1A] p-6 sm:p-8 rounded-xl transform hover:-translate-y-2 transition-all duration-300"
+                            initial={{ scale: 0, y: 20 }}
+                            animate={inView ? { scale: 1, y: 0 } : {}}
+                            transition={{ delay: inView ? index * 0.1 : 0, duration: 0.6, type: 'spring', stiffness: 120 }}
+                        >
+                            {project.image && (
+                                <img
+                                    src={project.image}
+                                    alt={`${project.title} Screenshot`}
+                                    className="w-full h-48 object-cover rounded-md mb-4 shadow-md hover:shadow-lg transition-shadow duration-300"
+                                />
+                            )}
+                            <h3 className="text-xl sm:text-2xl font-['Montserrat'] font-semibold text-[#00D4B4] mb-4">
+                                {project.title}
+                            </h3>
+                            <p className="text-lg sm:text-xl font-['Inter'] font-medium text-[#E6E6E6] mb-4">
+                                {project.description}
+                            </p>
                             <a
-                                href={project.codeLink}
+                                href={project.link}
+                                className="text-base font-semibold sm:text-lg text-[#00D4B4] hover:text-[#000000] border-2 py-1.5 px-3 rounded-lg hover:bg-[#00D4B4] transition-colors duration-300"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="border border-white text-white font-medium px-3 py-1 rounded hover:bg-white hover:text-black transition"
                             >
-                                GitHub
+                                View Project
                             </a>
-                            <a
-                                href={project.liveLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="border border-white text-white font-medium px-3 py-1 rounded hover:bg-white hover:text-black transition"
-                            >
-                                Live
-                            </a>
-                        </div>
-                    </div>
-                ))}
+                        </motion.div>
+                    ))}
+                </div>
             </div>
-        </div>
+        </section>
     );
-}
+};
 
 export default Projects;

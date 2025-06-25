@@ -1,70 +1,208 @@
-import { FaPhoneAlt, FaEnvelope, FaGithub, FaLinkedin, FaCode } from "react-icons/fa";
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Contact() {
-    const contacts = [
-        
+const Contact = () => {
+    const socialLinks = [
         {
-            icon: <FaEnvelope size={22} />,
-            label: "Email",
-            value: "utkarshkumarsingh12003@gmail.com",
-            link: "mailto:utkarshkumarsingh12003@gmail.com"
+            name: 'GitHub',
+            url: 'https://github.com/utkarsh-12zero9',
+            icon: 'https://cdn-icons-png.flaticon.com/512/25/25231.png',
         },
         {
-            icon: <FaLinkedin size={22} />,
-            label: "LinkedIn",
-            value: "utkarsh-12zero9",
-            link: "https://www.linkedin.com/in/utkarsh-12zero9/"
+            name: 'LinkedIn',
+            url: 'https://www.linkedin.com/in/utkarsh-12zero9',
+            icon: 'https://cdn-icons-png.flaticon.com/512/174/174857.png',
         },
         {
-            icon: <FaGithub size={22} />,
-            label: "GitHub",
-            value: "utkarsh-12zero9",
-            link: "https://github.com/utkarsh-12zero9"
+            name: 'Email',
+            url: 'mailto:utkarsh.kumar.singh@gmail.com',
+            icon: 'https://cdn-icons-png.flaticon.com/512/561/561127.png',
         },
-        {
-            icon: <FaCode size={22} />,
-            label: "LeetCode",
-            value: "utkarsh120903",
-            link: "https://leetcode.com/u/utkarsh120903/"
-        }
     ];
 
+    const textVariants = {
+        hidden: { opacity: 0 },
+        visible: (i) => ({
+            opacity: 1,
+            transition: { delay: i * 0.2, duration: 0.5 },
+        }),
+    };
+
+    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+    const sectionRef = useRef(null);
+    const inView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        toast.success('Message Sent 👍', {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            style: { backgroundColor: '#1A1A1A', color: '#E6E6E6', border: '1px solid #00D4B4' },
+        });
+        setFormData({ name: '', email: '', message: '' });
+    };
+
     return (
-        <section className="min-h-[90vh] flex flex-col justify-center items-center bg-gradient-to-br from-[#18181b] via-[#23272f] to-[#0f0f0f] py-16 px-4">
-            <div className="w-full max-w-2xl mx-auto">
-                <h2 className="text-5xl font-extrabold font-serif text-center text-white mb-6 tracking-tight">
-                    Get in Touch
-                </h2>
-                <p className="text-center text-lg text-gray-200 mb-12">
-                    I’d love to connect! Reach out via any of the platforms below.
-                </p>
-                <div className="bg-white/90 rounded-2xl shadow-2xl p-8 flex flex-col items-center mb-10 border border-gray-200">
-                    <p className="text-2xl font-semibold text-gray-900 font-serif mb-1">Utkarsh Kumar Singh</p>
-                    <p className="text-gray-700 mb-2">Ghaziabad, India</p>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {contacts.map((contact, index) => (
-                        <a
+        <section
+            id="contact"
+            ref={sectionRef}
+            className="min-h-[90vh] bg-transparent relative overflow-hidden py-12 sm:py-16"
+        >
+            {/* Orbiting Glow Divs */}
+            <motion.div
+                className="absolute w-48 h-48 rounded-full bg-gradient-to-br from-[#00D4B4]/30 to-[#7B3FE4]/30 blur-md"
+                initial={{ x: '10vw', y: '10vh', rotate: 0, scale: 1 }}
+                animate={{
+                    x: ['10vw', '30vw', '50vw', '70vw', '90vw', '60vw', '20vw'].map(v => `min(90vw, max(10vw, ${v}))`),
+                    y: ['10vh', '40vh', '70vh', '50vh', '30vh', '60vh', '90vh'].map(v => `min(90vh, max(10vh, ${v}))`),
+                    rotate: 360,
+                    scale: [1, 1.1, 1],
+                }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+                style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}
+            />
+            <motion.div
+                className="absolute w-40 h-40 rounded-full bg-gradient-to-br from-[#7B3FE4]/30 to-[#00D4B4]/30 blur-md"
+                initial={{ x: '90vw', y: '90vh', rotate: 0, scale: 1 }}
+                animate={{
+                    x: ['90vw', '70vw', '40vw', '20vw', '50vw', '80vw', '10vw'].map(v => `min(90vw, max(10vw, ${v}))`),
+                    y: ['90vh', '60vh', '30vh', '50vh', '70vh', '40vh', '20vh'].map(v => `min(90vh, max(10vh, ${v}))`),
+                    rotate: 360,
+                    scale: [1, 1.2, 1],
+                }}
+                transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+                style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}
+            />
+
+            {/* Pulsating Background */}
+            <motion.div
+                className="absolute inset-0 z-0 pointer-events-none"
+                animate={{
+                    background: [
+                        'radial-gradient(circle, rgba(0, 212, 180, 0.15) 0%, rgba(123, 63, 228, 0.15) 100%)',
+                        'radial-gradient(circle, rgba(123, 63, 228, 0.2) 0%, rgba(0, 212, 180, 0.2) 100%)',
+                    ],
+                }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
+            />
+
+            <div className="container mx-auto px-4 sm:px-6 md:px-20">
+                <motion.h2
+                    className="text-3xl sm:text-4xl md:text-5xl font-['Montserrat'] font-bold text-white mb-8 sm:mb-12 text-center transform -skew-x-6 drop-shadow-md"
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={inView ? { y: 0, opacity: 1 } : {}}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                >
+                    {Array.from('Get In Touch').map((letter, index) => (
+                        <motion.span
                             key={index}
-                            href={contact.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-4 bg-white/90 hover:bg-gray-100 p-5 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-300 group"
-                            aria-label={contact.label}
+                            custom={index}
+                            variants={textVariants}
+                            className="inline-block"
+                            initial="hidden"
+                            animate={inView ? "visible" : "hidden"}
                         >
-                            <div className="text-red-500 group-hover:scale-110 transition-transform duration-200">
-                                {contact.icon}
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-sm text-gray-500">{contact.label}</span>
-                                <span className="text-base text-gray-900 font-medium break-all">{contact.value}</span>
-                            </div>
-                        </a>
+                            {letter === ' ' ? '\u00A0' : letter}
+                        </motion.span>
                     ))}
-                </div>
+                </motion.h2>
+                <motion.div
+                    className="flex flex-col md:flex-row justify-between items-start gap-6 sm:gap-8 md:gap-12"
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={inView ? { y: 0, opacity: 1 } : {}}
+                    transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+                >
+                    {/* Contact Info & Social Links */}
+                    <motion.div
+                        className="bg-[#1A1A1A] p-6 sm:p-8 rounded-xl w-full md:w-1/2 text-center md:text-left"
+                        initial={{ scale: 0.9 }}
+                        animate={inView ? { scale: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                    >
+                        <p className="text-lg sm:text-xl font-['Inter'] font-medium text-[#E6E6E6] mb-6">
+                            I’d love to hear from you! Whether it’s a project idea, collaboration, or just a chat about code, feel free to reach out. Connect with me below or fill out the form.
+                        </p>
+                        <div className="flex justify-center md:justify-start space-x-6 sm:space-x-8">
+                            {socialLinks.map((link, index) => (
+                                <motion.a
+                                    key={link.name}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[#00D4B4] hover:text-[#7B3FE4] transition-all duration-300"
+                                    whileHover={{ scale: 1.2, rotate: 10 }}
+                                    whileTap={{ scale: 0.9, rotate: -10 }}
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={inView ? { y: 0, opacity: 1 } : {}}
+                                    transition={{ delay: inView ? index * 0.1 + 0.8 : 0, duration: 0.5, type: 'spring', stiffness: 120 }}
+                                >
+                                    <img src={link.icon} alt={`${link.name} Icon`} className="w-8 h-8 sm:w-10 sm:h-10" />
+                                    <span className="sr-only">{link.name}</span>
+                                </motion.a>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Contact Form */}
+                    <motion.div
+                        className="bg-[#1A1A1A] p-6 sm:p-8 rounded-xl w-full md:w-1/2"
+                        initial={{ scale: 0.9 }}
+                        animate={inView ? { scale: 1 } : {}}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                    >
+                        <h1 className="text-center text-3xl font-bold mb-5 font-serif">Let's collaborate</h1>
+                        <form className="space-y-4" onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                placeholder="Your Name"
+                                className="w-full p-3 rounded-lg bg-[#0A0A0A] text-[#E6E6E6] focus:outline-none focus:ring-2 focus:ring-[#00D4B4]"
+                                required
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                placeholder="Your Email"
+                                className="w-full p-3 rounded-lg bg-[#0A0A0A] text-[#E6E6E6] focus:outline-none focus:ring-2 focus:ring-[#00D4B4]"
+                                required
+                            />
+                            <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                placeholder="Your Message"
+                                className="w-full p-3 rounded-lg bg-[#0A0A0A] text-[#E6E6E6] h-32 focus:outline-none focus:ring-2 focus:ring-[#00D4B4]"
+                                required
+                            />
+                            <button
+                                type="submit"
+                                className="w-full text-xl font-semibold py-2 px-4 bg-[#00D4B4] text-white rounded-lg hover:bg-[#7B3FE4] transition-colors duration-300 cursor-pointer"
+                            >
+                                Send Message
+                            </button>
+                        </form>
+                    </motion.div>
+                </motion.div>
             </div>
+            <ToastContainer />
         </section>
-        );
-}
+    );
+};
 
 export default Contact;
