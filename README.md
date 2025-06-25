@@ -41,7 +41,7 @@ This is a personal portfolio website built with **React** and **Vite**. It showc
 ## Project Structure
 
 src/
-  [Components/      # All React components (Intro, Navbar, Skills, Education, Projects, Contact)]
+  [Components/      # All React components (Header, Hero, About, Projects, Contact, Footer)]
   [assets/          # Images and logos]
   [[App.jsx](http://_vscodecontentref_/0)          # Main app component with routing]
   [[main.jsx](http://_vscodecontentref_/1)         # Entry point]
