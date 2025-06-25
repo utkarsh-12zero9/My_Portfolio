@@ -36,23 +36,19 @@ This is a personal portfolio website built with **React** and **Vite**. It showc
 4. **Open in your browser:**
    http://localhost:5173
 
-
-
 ## Project Structure
 
 src/
-  [Components/      # All React components (Header, Hero, About, Projects, Contact, Footer)]
-  [assets/          # Images and logos]
-  [[App.jsx](http://_vscodecontentref_/0)          # Main app component with routing]
-  [[main.jsx](http://_vscodecontentref_/1)         # Entry point]
-  [[index.css](http://_vscodecontentref_/2)        # Tailwind and global styles]
-  [public/]
-  [Images/]          # Public images (profile, favicon, etc.)
-
+[Components/ # All React components (Header, Hero, About, Projects, Contact, Footer)]
+[assets/ # Images and logos]
+[[App.jsx](http://_vscodecontentref_/0) # Main app component with routing]
+[[main.jsx](http://_vscodecontentref_/1) # Entry point]
+[[index.css](http://_vscodecontentref_/2) # Tailwind and global styles]
+[public/]
+[Images/] # Public images (profile, favicon, etc.)
 
 ## License
 
     This project is open source and available under the MIT License.
-
 
 **Made with ❤️ by Utkarsh Kumar Singh**
