@@ -33,3 +33,16 @@ body {
 .animate-spin-slow {
     animation: spin 10s linear infinite;
 }
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px #7B3FE4) drop-shadow(0 0 16px #7B3FE4);
+  }
+  50% {
+    filter: drop-shadow(0 0 16px #7B3FE4) drop-shadow(0 0 32px #7B3FE4);
+  }
+}
+
+.animate-glow {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
