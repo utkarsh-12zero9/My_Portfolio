@@ -7,7 +7,6 @@ import Footer from "./Components/Footer";
 import { useEffect, useState } from "react";
 import Resume from "./Components/Resume";
 
-
 const App = () => {
     const [loading, setLoading] = useState(true);
 

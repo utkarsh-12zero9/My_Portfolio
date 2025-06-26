@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Tala from "../assets/Images/TalaLandingPage.png";
-import Refokus from "../assets/Images/RefokusLandingPage.png";
+import Refokus from "../assets/Images/refokusLandingPage.png";
 import BubbleGame from "../assets/Images/BubbleGameLandingPage.png";
 
 const Projects = () => {
