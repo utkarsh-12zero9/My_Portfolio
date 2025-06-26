@@ -22,6 +22,73 @@ const About = () => {
 
     return (
         <section id="about" className="min-h-[90vh] bg-transparent relative overflow-hidden py-12 sm:py-16">
+            {/* Revolving Blur Glowing Div 1 */}
+            <motion.div
+                className="absolute w-72 h-72 rounded-full bg-gradient-to-br from-[#00D4B4]/30 to-[#7B3FE4]/30 blur-md"
+                initial={{ x: '10vw', y: '10vh', rotate: 0, scale: 1 }}
+                animate={{
+                    x: ['10vw', '30vw', '50vw', '70vw', '90vw', '60vw', '20vw'].map(v => `min(90vw, max(10vw, ${v}))`),
+                    y: ['10vh', '40vh', '70vh', '50vh', '30vh', '60vh', '90vh'].map(v => `min(90vh, max(10vh, ${v}))`),
+                    rotate: 360,
+                    scale: [1, 1.1, 1],
+                }}
+                transition={{
+                    duration: 25,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+                style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}
+            />
+
+            {/* Revolving Blur Glowing Div 2 */}
+            <motion.div
+                className="absolute w-64 h-64 rounded-full bg-gradient-to-br from-[#7B3FE4]/30 to-[#00D4B4]/30 blur-md"
+                initial={{ x: '90vw', y: '90vh', rotate: 0, scale: 1 }}
+                animate={{
+                    x: ['90vw', '70vw', '40vw', '20vw', '50vw', '80vw', '10vw'].map(v => `min(90vw, max(10vw, ${v}))`),
+                    y: ['90vh', '60vh', '30vh', '50vh', '70vh', '40vh', '20vh'].map(v => `min(90vh, max(10vh, ${v}))`),
+                    rotate: 360,
+                    scale: [1, 1.2, 1],
+                }}
+                transition={{
+                    duration: 22,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+                style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}
+            />
+
+            {/* Revolving Blur Glowing Div 3 */}
+            <motion.div
+                className="absolute w-60 h-60 rounded-full bg-gradient-to-br from-[#00D4B4]/25 to-[#7B3FE4]/25 blur-md"
+                initial={{ x: '30vw', y: '70vh', rotate: 0, scale: 1 }}
+                animate={{
+                    x: ['30vw', '60vw', '80vw', '40vw', '10vw', '50vw', '90vw'].map(v => `min(90vw, max(10vw, ${v}))`),
+                    y: ['70vh', '40vh', '20vh', '60vh', '80vh', '30vh', '10vh'].map(v => `min(90vh, max(10vh, ${v}))`),
+                    rotate: 360,
+                    scale: [1, 1.15, 1],
+                }}
+                transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+                style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}
+            />
+
+            {/* Animated Background Effect */}
+            <motion.div
+                className="absolute inset-0 z-0"
+                animate={{
+                    background: [
+                        'radial-gradient(circle, rgba(0, 212, 180, 0.15) 0%, rgba(123, 63, 228, 0.15) 100%)',
+                        'radial-gradient(circle, rgba(123, 63, 228, 0.15) 0%, rgba(0, 212, 180, 0.15) 100%)',
+                    ],
+                }}
+                transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
+            >
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2210%22 fill=%22rgba(0,212,180,0.05)%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%225%22 fill=%22rgba(123,63,228,0.05)%22/%3E%3Ccircle cx=%2280%22 cy=%2280%22 r=%227%22 fill=%22rgba(0,212,180,0.05)%22/%3E%3C/svg%22] opacity-60" />
+            </motion.div>
 
             <div className="container mx-auto px-4 sm:px-6 md:px-20">
                 <div className="flex flex-col md:flex-row justify-between items-start gap-6 sm:gap-8 md:gap-16">

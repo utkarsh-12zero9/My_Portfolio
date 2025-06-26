@@ -17,7 +17,7 @@ const Hero = () => {
     return (
         <section
             id="home"
-            className="min-h-screen bg-[#0A0A0A] flex flex-col-reverse md:flex-row items-center justify-center relative overflow-hidden px-4 sm:px-8 sm:mt-5"
+            className="min-h-screen bg-[#0A0A0A] flex flex-col-reverse md:flex-row items-center justify-center relative overflow-hidden px-4 sm:px-8 sm:mt-7"
         >
             {/* Text Section */}
             <motion.div
@@ -117,7 +117,7 @@ const Hero = () => {
 
             {/* Visual Section - Mobile */}
             <motion.div
-                className="md:hidden w-full max-w-xs mx-auto mt-8 z-10"
+                className="md:hidden w-full max-w-xs mx-auto mt-16 z-10"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
