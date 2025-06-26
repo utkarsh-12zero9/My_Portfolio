@@ -26,7 +26,7 @@ const Hero = () => {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
             >
-                <h1 className="text-3xl xs:text-4xl md:text-6xl font-['Montserrat'] text-white transform -skew-x-3 mb-4">
+                <h1 className="text-3xl xs:text-4xl md:text-6xl font-['Montserrat'] text-white transform -skew-x-3 mb-4 mt-5 md:mt-1">
                     Utkarsh Kumar Singh
                 </h1>
                 <AnimatePresence mode="wait">
