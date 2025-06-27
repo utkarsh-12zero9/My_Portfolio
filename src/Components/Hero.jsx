@@ -4,6 +4,8 @@ import Refokus from "../assets/Images/refokusLandingPage.png";
 import Tala from "../assets/Images/TalaLandingPage.png";
 
 const Hero = () => {
+    const skills = ['JavaScript', 'React', 'Responsive'];
+
     const descriptors = ['Front-End Developer', 'React Enthusiast', 'Problem Solver'];
     const [currentDescriptor, setCurrentDescriptor] = useState(0);
 
@@ -32,7 +34,7 @@ const Hero = () => {
                 <AnimatePresence mode="wait">
                     <motion.p
                         key={currentDescriptor}
-                        className="text-base xs:text-lg md:text-xl font-['Inter'] text-[#E6E6E6] mb-6 border-l-4 border-[#00D4B4] inline-block pl-3"
+                        className="text-base xs:text-lg md:text-xl font-['Inter'] text-[#E6E6E6] mb-6 border-l-4 border-[#00D4B4] inline-block px-4 bg-[#434646] bg-opacity-10"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -47,10 +49,10 @@ const Hero = () => {
                 </p>
                 {/* Skill Tags */}
                 <div className="grid grid-cols-2 xs:grid-cols-3 gap-2 max-w-xs mx-auto md:mx-0">
-                    {['React', 'JavaScript', 'Responsive'].map((skill) => (
+                    {skills.map((skill) => (
                         <motion.span
                             key={skill}
-                            className="text-lg xs:text-md font-['Fira_Code'] text-[#00D4B4] bg-[#1A1A1A] px-3 py-1 rounded transform rotate-2"
+                            className="text-md xs:text-md font-['Fira_Code'] text-[#00D4B4] bg-[#1A1A1A] px-3  rounded transform rotate-2"
                             whileHover={{ rotate: -2 }}
                             transition={{ duration: 0.2 }}
                         >
@@ -102,16 +104,16 @@ const Hero = () => {
                     </div>
                 </div>
                 <div className="absolute top-10 left-1/2 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
-  <svg
-    viewBox="0 0 24 24"
-    className="text-[#7B3FE4] w-full h-full  animate-spin-slow"
-  >
-    <path
-      fill="currentColor"
-      d="M12 2.7L2.7 12l9.3 9.3 9.3-9.3L12 2.7z"
-    />
-  </svg>
-</div>
+                    <svg
+                        viewBox="0 0 24 24"
+                        className="text-[#7B3FE4] w-full h-full  animate-spin-slow"
+                    >
+                        <path
+                            fill="currentColor"
+                            d="M12 2.7L2.7 12l9.3 9.3 9.3-9.3L12 2.7z"
+                        />
+                    </svg>
+                </div>
 
             </motion.div>
 

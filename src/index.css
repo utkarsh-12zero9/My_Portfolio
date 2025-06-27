@@ -1,11 +1,12 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;500&family=Fira+Code:wght@400;500&display=swap');
+@import "tailwindcss";
 
 body {
     margin: 0;
     background: #0A0A0A;
     color: #E6E6E6;
     font-family: 'Inter', sans-serif;
+    user-select: none;
 }
 
 @keyframes glow {
@@ -30,6 +31,6 @@ body {
 }
 
 .animate-spin-slow {
-    animation: spin 10s linear infinite;
+    animation: spin 3s linear infinite;
 }
 
