@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
     const socialLinks = [
@@ -42,16 +43,42 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        toast.success('Message Sent 👍', {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            style: { backgroundColor: '#1A1A1A', color: '#E6E6E6', border: '1px solid #00D4B4' },
-        });
-        setFormData({ name: '', email: '', message: '' });
+
+        emailjs.send(
+            'service_cixpmgr', // Your Service ID
+            'template_67mjl1p', // Your Template ID
+            {
+                from_name: formData.name,
+                from_email: formData.email,
+                message: formData.message,
+                to_email: 'utkarshkumarsingh120903@gmail.com',
+            },
+            '9SF0_vkuQWvLHMAuK' // Your User ID
+        ).then(
+            (result) => {
+                toast.success('Message Sent Successfully! 👍', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    style: { backgroundColor: '#1A1A1A', color: '#E6E6E6', border: '1px solid #00D4B4' },
+                });
+                setFormData({ name: '', email: '', message: '' });
+            },
+            (error) => {
+                toast.error('Failed to Send Message. Try Again! 😞', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    style: { backgroundColor: '#1A1A1A', color: '#E6E6E6', border: '1px solid #7B3FE4' },
+                });
+            }
+        );
     };
 
     return (
