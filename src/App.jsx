@@ -1,9 +1,9 @@
 import Hero from "./Components/Hero";
-import Header from "./Components/Header";
+import Header from "./Layout/Header";
 import About from "./Components/About";
 import Projects from "./Components/Projects";
 import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
+import Footer from "./Layout/Footer";
 import { useEffect, useState } from "react";
 import Resume from "./Components/Resume";
 

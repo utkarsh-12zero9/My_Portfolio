@@ -1,10 +1,16 @@
 import { motion } from 'framer-motion';
 import Tala from "../assets/Images/TalaLandingPage.png";
 import Refokus from "../assets/Images/refokusLandingPage.png";
-import BubbleGame from "../assets/Images/BubbleGameLandingPage.png";
+import HomeMaid from "../assets/Images/HomeMaid.png";
 
 const Projects = () => {
     const projects = [
+        {
+            title: 'HomeMaid',
+            description: 'HomeMaid is a responsive service booking website inspired by real-world needs, crafted with React and Tailwind CSS to deliver a seamless user experience.',
+            link: 'https://homemaid.netlify.app/',
+            image: HomeMaid,
+        },
         {
             title: 'Refokus UI Clone',
             description: 'A responsive UI clone of the Refokus website, built with React and Tailwind CSS.',
@@ -16,19 +22,7 @@ const Projects = () => {
             description: 'A modern UI clone of the TALA website, focusing on pixel-perfect design with HTML/CSS.',
             link: 'https://utkarsh-12zero9.github.io/Tala-UI-Clone/',
             image: Tala,
-        },
-        {
-            title: 'Bubble Game',
-            description: 'A fun interactive bubble-popping game developed with JavaScript and Canvas.',
-            link: 'https://github.com/utkarsh-12zero9/Bubble-Game',
-            image: BubbleGame,
-        },
-        {
-            title: 'Upcoming Project',
-            description: 'Stay tuned for my next exciting project!',
-            link: '#',
-            image: '',
-        },
+        }
     ];
 
     return (

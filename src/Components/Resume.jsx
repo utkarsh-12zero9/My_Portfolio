@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 const Resume = () => {
-  const skillsPreview = ['HTML', 'CSS', 'JavaScript', 'Tailwind CSS', 'GSAP', 'React', 'Framer Motion', 'C++', 'DSA', 'Git & GitHub'];
+  const skillsPreview = ['Web Development', 'Version control', 'React', 'DSA', 'Problem Solving', 'Learning Backend'];
 
   return (
     <section id="resume" className="min-h-[90vh] bg-transparent relative overflow-hidden py-16 sm:py-16">

@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 const About = () => {
-    const skills = ['React', 'JavaScript', 'C++', 'HTML', 'CSS', 'Tailwind', 'Git & GitHub', 'DSA', 'Problem Solving'];
+    const skills = ['C', 'C++', 'Python', 'Java','HTML', 'CSS', 'JavaScript', 'Tailwind', 'Git & GitHub', 'React', 'NodeJS', 'ExpressJS', 'ejs', 'MySQL', 'MongoDB', 'Pisma ORM', 'DSA', 'Problem Solving'];
     const education = [
         'B.Tech in CSE (AI&ML), KIET Group of Institutions (2023-Present)',
         '12th PCM - 83.8%, Army Public School (2021-22)',
@@ -11,7 +11,7 @@ const About = () => {
     const extras = [
         'Member, DevUp Club, KIET (2023-2024) - Started web dev journey with HTML/CSS',
         'Certifications: HTML, CSS, ReactJS (LinkedIn Learning)',
-        'Freelance Projects: UI Clones (Refokus, TALA)',
+        'Freelance Projects: HomeMaid, URL SHortner, UI CLone(TALA)',
     ];
 
     const aboutRef = useRef(null);
