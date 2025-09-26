@@ -46,11 +46,11 @@ const Header = () => {
                 {/* Desktop Nav */}
                 <div className="hidden md:flex space-x-4 xl:space-x-8">
                     {navLinks.map((link) => (
-                                                <motion.a
+                        <motion.a
                             key={link.name}
                             href={link.href}
                             className="text-[#E6E6E6] hover:text-[#00D4B4] font-['Inter'] text-lg relative
-                                after:content-[''] after:block after:h-[2px] after:bg-[#00D4B4] after:scale-x-0  hover:after:scale-x-100"
+                                after:content-[''] after:block after:h-[2px] after:bg-[#05a28b] after:scale-x-0  hover:after:scale-x-100 font-semibold"
                             whileHover={{ rotate: 5, color: '#00D4B4' }}
                             transition={{ duration: 0.2 }}
                         >
@@ -78,7 +78,7 @@ const Header = () => {
             {/* Mobile Menu */}
             {isOpen && (
                 <motion.div
-                    className="md:hidden bg-[#0A0A0A]/90 backdrop-blur-md py-4"
+                    className="md:hidden bg-[#0A0A0A]/90 backdrop-blur-md py-4 flex flex-col pl-6 mt-3 rounded-2xl"
                     initial={{ x: '100%' }}
                     animate={{ x: 0 }}
                     exit={{ x: '100%' }}
@@ -88,7 +88,7 @@ const Header = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            className="block py-2 px-4 text-[#E6E6E6] hover:text-[#00D4B4] font-['Inter'] text-lg"
+                            className="text-[#00D4B4] hover:text-[#00D4B4] font-['Inter'] text-lg relative font-semibold mb-1"
                             onClick={() => setIsOpen(false)}
                         >
                             {link.name}

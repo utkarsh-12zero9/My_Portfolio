@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 const Resume = () => {
-  const skillsPreview = ['Web Development', 'Version control', 'React', 'DSA', 'Problem Solving', 'Learning Backend'];
+  const skillsPreview = ['Full-Stack Development', 'MERN Stack', 'Version control', 'Problem Solving'];
 
   return (
     <section id="resume" className="min-h-[90vh] bg-transparent relative overflow-hidden py-16 sm:py-16">
@@ -39,17 +39,18 @@ const Resume = () => {
         >
           My Resume
         </motion.h2>
+
         <motion.div
-          className="max-w-2xl mx-auto"
+          className="max-w-xl mx-auto"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <p className="text-lg sm:text-xl font-['Inter'] text-[#E6E6E6] mb-6">
-            I’m Utkarsh Kumar Singh, a front-end developer from Ghaziabad, India, passionate about crafting dynamic web experiences with React, JavaScript, and Tailwind CSS. With a B.Tech in CSE (AI&ML) and hands-on projects like Refokus and TALA UI clones, I blend creativity with technical skills to deliver pixel-perfect designs.
+            I’m Utkarsh Kumar Singh, a full-stack MERN developer from Ghaziabad, India, passionate about crafting dynamic web experiences with MERN Stack and TailwindCSS. With a B.Tech in CSE (AI&ML) and hands-on projects like AyurSutra and HomeMaid, I blend creativity with technical skills to deliver pixel-perfect designs.
           </p>
-          <div className="mb-6">
-            <h3 className="text-xl sm:text-2xl font-['Montserrat'] font-semibold text-[#00D4B4] mt-8 mb-5">Key Skills</h3>
+          <div className="mb-6 mt-12">
+            <h3 className="text-xl sm:text-2xl font-['Montserrat'] font-semibold text-[#3ffdc4] mt-8 mb-5">Key Skills</h3>
             <div className="flex flex-wrap justify-center gap-2">
               {skillsPreview.map((skill) => (
                 <motion.span
@@ -65,8 +66,8 @@ const Resume = () => {
           </div>
           <motion.a
             href="/resume.pdf"
-            download="Utkarsh_Kumar_Singh_Resume.pdf"
-            className="inline-block mt-5 px-6 py-3 bg-[#00D4B4] text-[#E6E6E6] font-['Inter'] text-lg font-extrabold transform skew-x-6 hover:bg-[#7B3FE4] hover:text-white transition-colors duration-300 rounded-lg"
+            download="Utkarsh_Kumar_Singh_SDE_Resume.pdf"
+            className="inline-block mt-5 px-6 py-3 bg-[#00D4B4] text-black font-['Inter'] text-lg font-extrabold transform skew-x-6 hover:bg-[#7B3FE4] hover:text-white transition-colors duration-300 rounded-lg"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >

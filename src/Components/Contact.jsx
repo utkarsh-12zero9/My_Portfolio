@@ -127,7 +127,7 @@ const Contact = () => {
 
             <div className="container mx-auto px-4 sm:px-6 md:px-20">
                 <motion.h2
-                    className="text-3xl sm:text-4xl md:text-5xl font-['Montserrat'] font-bold text-white mb-8 sm:mb-12 text-center transform -skew-x-6 drop-shadow-md"
+                    className="text-3xl sm:text-4xl md:text-5xl font-['Montserrat'] font-bold text-white mb-8 sm:mb-12 transform -skew-x-6 drop-shadow-md"
                     initial={{ y: 50, opacity: 0 }}
                     animate={inView ? { y: 0, opacity: 1 } : {}}
                     transition={{ duration: 0.8, ease: 'easeOut' }}

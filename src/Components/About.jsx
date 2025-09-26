@@ -2,7 +2,12 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 const About = () => {
-    const skills = ['C', 'C++', 'Python', 'Java','HTML', 'CSS', 'JavaScript', 'Tailwind', 'Git & GitHub', 'React', 'NodeJS', 'ExpressJS', 'ejs', 'MySQL', 'MongoDB', 'Pisma ORM', 'DSA', 'Problem Solving'];
+    
+    const skills = ['C', 'C++', 'Python', 'Java','HTML', 'CSS',
+                    'JavaScript', 'Tailwind', 'Git & GitHub', 'React',
+                    'NodeJS', 'ExpressJS', 'ejs', 'MySQL', 'MongoDB',
+                    'Pisma ORM', 'DSA', 'Problem Solving'];
+
     const education = [
         'B.Tech in CSE (AI&ML), KIET Group of Institutions (2023-Present)',
         '12th PCM - 83.8%, Army Public School (2021-22)',
@@ -32,6 +37,7 @@ const About = () => {
                     rotate: 360,
                     scale: [1, 1.1, 1],
                 }}
+
                 transition={{
                     duration: 25,
                     repeat: Infinity,
@@ -59,8 +65,7 @@ const About = () => {
             />
 
             {/* Revolving Blur Glowing Div 3 */}
-            <motion.div
-                className="absolute w-60 h-60 rounded-full bg-gradient-to-br from-[#00D4B4]/25 to-[#7B3FE4]/25 blur-md"
+            <motion.div className="absolute w-60 h-60 rounded-full bg-gradient-to-br from-[#00D4B4]/25 to-[#7B3FE4]/25 blur-md"
                 initial={{ x: '30vw', y: '70vh', rotate: 0, scale: 1 }}
                 animate={{
                     x: ['30vw', '60vw', '80vw', '40vw', '10vw', '50vw', '90vw'].map(v => `min(90vw, max(10vw, ${v}))`),
@@ -103,6 +108,7 @@ const About = () => {
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Montserrat'] font-bold text-white mb-4 sm:mb-6 transform -skew-x-6 drop-shadow-md">
                             About Me
                         </h2>
+
                         <div className="bg-[#1A1A1A] p-6 sm:p-8 rounded-xl">
                             <p className="text-xl md:text-xl font-['Inter'] font-medium text-[#E6E6E6] mb-3 sm:mb-5 leading-relaxed drop-shadow">
                                 I’m a passionate front-end developer from Ghaziabad, India, specializing in React and JavaScript. My journey began with HTML and CSS, evolving into building responsive, modern web experiences. I love tackling complex UI challenges and turning ideas into pixel-perfect designs.
@@ -130,19 +136,19 @@ const About = () => {
                         animate={skillsInView ? { y: 0, opacity: 1 } : {}}
                         transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
                     >
-                        <h3 className="text-3xl sm:text-4xl md:text-5xl font-['Montserrat'] font-bold text-white mb-4 sm:mb-6 text-center md:text-left drop-shadow-md">
-                            My Skills
+                        <h3 className="text-2xl text-[#00D4B4] md:mt-12 sm:text-4xl md:text-5xl font-['Montserrat'] font-bold mb-4 sm:mb-6 text-center md:text-left drop-shadow-md">
+                            Skilled in
                         </h3>
-                        <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-3">
+                        <div className="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-3">
                             {skills.map((skill, index) => (
                                 <motion.div
                                     key={skill}
-                                    className="bg-[#1A1A1A] p-4 sm:p-5 rounded-xl text-center transform rotate-1 hover:rotate-0 hover:bg-[#00D4B4]/20 transition-all duration-300 max-w-[150px]"
+                                    className="bg-[#1A1A1A] p-4 sm:p-5 rounded-xl text-center transform rotate-1 hover:rotate-0 hover:bg-[#00D4B4]/80  transition-all duration-300 max-w-[150px]"
                                     initial={{ scale: 0, y: 20 }}
                                     animate={skillsInView ? { scale: 1, y: 0 } : {}}
                                     transition={{ delay: skillsInView ? index * 0.1 : 0, duration: 0.6, type: 'spring', stiffness: 120 }}
                                 >
-                                    <span className="text-base md:text-lg font-['Fira_Code'] font-medium text-[#00D4B4] drop-shadow">{skill}</span>
+                                    <span className="text-base md:text-lg font-['Fira_Code'] font-medium drop-shadow">{skill}</span>
                                 </motion.div>
                             ))}
                         </div>

@@ -1,10 +1,16 @@
 import { motion } from 'framer-motion';
-import Tala from "../assets/Images/TalaLandingPage.png";
+import AyurSutra from "../assets/Images/AyurSutraLandingPage.png";
 import Refokus from "../assets/Images/refokusLandingPage.png";
 import HomeMaid from "../assets/Images/HomeMaid.png";
 
 const Projects = () => {
     const projects = [
+        {
+            title: 'AyurSutra',
+            description: "AyurSutra, Panchakarma Patient Management and Therapy Scheduling Software. I handled the Frontend development using React, Tailwind CSS, and Axios.",
+            link: 'https://aayursutra.netlify.app/',
+            image: AyurSutra,
+        },
         {
             title: 'HomeMaid',
             description: 'HomeMaid is a responsive service booking website inspired by real-world needs, crafted with React and Tailwind CSS to deliver a seamless user experience.',
@@ -17,12 +23,6 @@ const Projects = () => {
             link: 'https://refokus-ui-cl-git-463446-utkarsh-kumar-singhs-projects-f2e44fce.vercel.app/',
             image: Refokus,
         },
-        {
-            title: 'TALA UI Clone',
-            description: 'A modern UI clone of the TALA website, focusing on pixel-perfect design with HTML/CSS.',
-            link: 'https://utkarsh-12zero9.github.io/Tala-UI-Clone/',
-            image: Tala,
-        }
     ];
 
     return (
@@ -41,12 +41,12 @@ const Projects = () => {
 
             <div className="container mx-auto px-4 sm:px-6 md:px-20">
                 <motion.h2
-                    className="text-3xl sm:text-4xl md:text-5xl font-['Montserrat'] font-bold text-white mb-8 sm:mb-12 text-center transform -skew-x-6 drop-shadow-md"
+                    className="text-3xl sm:text-4xl md:text-5xl font-['Montserrat'] font-bold text-white mb-8 sm:mb-12 transform -skew-x-6 drop-shadow-md"
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
                 >
-                    My Projects
+                    Projects
                 </motion.h2>
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-10 sm:gap-8">
                     {projects.map((project, index) => (
@@ -58,9 +58,9 @@ const Projects = () => {
                             transition={{ delay: index * 0.1, duration: 0.6, type: 'spring', stiffness: 120 }}
                         >
                             <motion.div
-                                className="absolute inset-0 rounded-xl pointer-events-none z-10 border-2 border-[#7B3FE4] group-hover:border-[#7B3FE4]"
-                                initial={{ boxShadow: '0 0 0px 0px #7B3FE4' }}
-                                animate={{ boxShadow: ['0 0 0px 0px #7B3FE4', '0 0 8px 3px #7B3FE4', '0 0 0px 0px #7B3FE4'] }}
+                                className="absolute inset-0 rounded-xl pointer-events-none z-10 border-2 border-[#00D4B4] group-hover:border-[#03ab92]"
+                                initial={{ boxShadow: '0 0 0px 0px #00D4B4' }}
+                                animate={{ boxShadow: ['0 0 0px 0px #00D4B4', '0 0 8px 3px #00D4B4', '0 0 0px 0px #00D4B4'] }}
                                 transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
                                 style={{ transitionProperty: 'box-shadow, border-color' }}
                             />
