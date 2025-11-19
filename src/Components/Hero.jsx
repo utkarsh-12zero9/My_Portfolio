@@ -32,7 +32,7 @@ const Hero = () => {
             >
 
                 {/* Name */}
-                <h1 className="text-3xl xs:text-4xl md:text-6xl font-['Montserrat'] text-white transform -skew-x-3 mt-3 mb-3">
+                <h1 className="text-3xl xs:text-4xl md:text-6xl font-['Montserrat'] text-white transform -skew-x-3 mt-3 mb-3 font-bold">
                     Utkarsh Kumar Singh
                 </h1>
 
@@ -40,7 +40,7 @@ const Hero = () => {
                 <AnimatePresence mode="wait">
                     <motion.p
                         key={currentDescriptor}
-                        className="text-base xs:text-lg md:text-xl font-['Inter'] text-[#E6E6E6] mb-6 mt-2 border-l-4 border-[#00D4B4] inline-block px-5 py-1 bg-[#434646] bg-opacity-10"
+                        className="text-base xs:text-lg md:text-xl font-['Inter'] text-[#E6E6E6] mb-6 mt-2 border-l-4 border-[#00D4B4] inline-block px-5 py-1 bg-[#434646] bg-opacity-10 rounded-lg"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}

@@ -139,14 +139,13 @@ const About = () => {
                         <h3 className="text-2xl text-[#00D4B4] md:mt-12 sm:text-4xl md:text-5xl font-['Montserrat'] font-bold mb-4 sm:mb-6 text-center md:text-left drop-shadow-md">
                             Skilled in
                         </h3>
-                        <div className="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-3">
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-3">
                             {skills.map((skill, index) => (
                                 <motion.div
                                     key={skill}
                                     className="bg-[#1A1A1A] p-4 sm:p-5 rounded-xl text-center transform rotate-1 hover:rotate-0 hover:bg-[#00D4B4]/80  transition-all duration-300 max-w-[150px]"
                                     initial={{ scale: 0, y: 20 }}
                                     animate={skillsInView ? { scale: 1, y: 0 } : {}}
-                                    transition={{ delay: skillsInView ? index * 0.1 : 0, duration: 0.6, type: 'spring', stiffness: 120 }}
                                 >
                                     <span className="text-base md:text-lg font-['Fira_Code'] font-medium drop-shadow">{skill}</span>
                                 </motion.div>

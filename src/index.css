@@ -1,36 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;500&family=Fira+Code:wght@400;500&display=swap');
+
 @import "tailwindcss";
 
 body {
-    margin: 0;
-    background: #0A0A0A;
-    color: #E6E6E6;
-    font-family: 'Inter', sans-serif;
-    user-select: none;
+  margin: 0;
+  background: #0A0A0A;
+  color: #E6E6E6;
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+  cursor: none; /* Hide default cursor */
+}
+
+/* Hide cursor on all interactive elements */
+* {
+  cursor: none !important;
 }
 
 @keyframes glow {
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.5;
-    }
-
-    50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
 }
 
 .animate-glow {
-    animation: glow 3s ease-in-out infinite;
+  animation: glow 3s ease-in-out infinite;
 }
 
 .animate-glow-delayed {
-    animation: glow 3s ease-in-out infinite 1.5s;
+  animation: glow 3s ease-in-out infinite 1.5s;
 }
 
 .animate-spin-slow {
-    animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
 }
-
