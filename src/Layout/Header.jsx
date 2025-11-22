@@ -1,120 +1,158 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Contact', href: '#contact' },
-        { name: 'Resume', href: '#resume' },
-    ];
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
-    return (
-  <motion.nav
-    className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/40 backdrop-blur-xl border-b border-white/5 shadow-lg max-h-16"
-    initial={{ y: -100 }}
-    animate={{ y: 0 }}
-    transition={{ duration: 0.5 }}
-  >
-    <div className="container mx-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 flex items-center justify-between">
-      {/* Name/Logo */}
-      <motion.div
-        className="text-2xl sm:text-3xl md:text-4xl font-bold font-['Montserrat'] select-none transform -rotate-3 cursor-pointer"
-        initial={{ textShadow: '0 0 8px #00D4B4, 0 0 16px #00D4B4' }}
-        animate={{
-          color: ['#fff', '#00D4B4', '#fff', '#fff'],
-          textShadow: [
-            '0 0 8px #00D4B4, 0 0 16px #00D4B4',
-            '0 0 16px #7B3FE4, 0 0 32px #00D4B4',
-            '0 0 8px #00D4B4, 0 0 16px #00D4B4',
-            '0 0 24px #7B3FE4, 0 0 48px #00D4B4',
-            '0 0 8px #00D4B4, 0 0 16px #00D4B4',
-          ],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut",
-        }}
-        whileHover={{ scale: 1.05, rotate: -6 }}
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Stats', href: '#stats' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
+  const handleNavClick = (e, href) => {
+    // If we are on the home page, we scroll. 
+    // If we were on a different route, we would need to navigate first.
+    // Since this is a single page portfolio, we just scroll.
+    // We prevent default to handle smooth scroll manually if needed, 
+    // but standard anchor behavior + css scroll-behavior: smooth in html usually works.
+    // However, the user asked for React Router.
+
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      // Update URL hash without jumping
+      window.history.pushState(null, '', href);
+    }
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <motion.nav
+        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-auto transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'
+          }`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        Utkarsh
-      </motion.div>
-
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center gap-1 lg:gap-2">
-        {navLinks.map((link, index) => (
+        <div className="glass-panel rounded-full px-6 py-3 flex items-center justify-between md:gap-12 shadow-2xl shadow-black/20">
+          {/* Logo */}
           <motion.a
-            key={link.name}
-            href={link.href}
-            className="relative px-4 lg:px-5 py-2 text-[#E6E6E6] hover:text-[#00D4B4] font-['Inter'] text-base lg:text-lg font-semibold rounded-lg transition-all duration-300 group overflow-hidden"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.3 }}
+            href="#home"
+            className="text-xl font-bold font-['Montserrat'] tracking-tight relative z-10"
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => handleNavClick(e, '#home')}
           >
-            {/* Animated underline */}
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#00D4B4] to-[#7B3FE4] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-            
-            {/* Hover background glow */}
-            <span className="absolute inset-0 bg-gradient-to-r from-[#00D4B4]/10 to-[#7B3FE4]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></span>
-            
-            <span className="relative z-10">{link.name}</span>
+            <span className="text-white">Utkarsh</span>
+            <span className="text-[#00D4B4]">.</span>
           </motion.a>
-        ))}
-      </div>
 
-      {/* Mobile Menu Button */}
-      <motion.button
-        className="md:hidden text-white focus:outline-none p-2 rounded-lg hover:bg-white/10 transition-colors"
-        onClick={() => setIsOpen(!isOpen)}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Toggle menu"
-      >
-        <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
-          />
-        </svg>
-      </motion.button>
-    </div>
-
-    {/* Mobile Menu */}
-    {isOpen && (
-      <motion.div
-        className="md:hidden bg-[#0d0f1a]/95 backdrop-blur-xl border-t border-white/10 shadow-2xl"
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
-        exit={{ opacity: 0, height: 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-      >
-        <div className="px-4 py-4 space-y-1">
-          {navLinks.map((link, index) => (
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="relative text-sm font-medium text-gray-300 hover:text-white transition-colors font-['Inter'] group"
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00D4B4] transition-all duration-300 group-hover:w-full" />
+              </Link>
+            ))}
             <motion.a
-              key={link.name}
-              href={link.href}
-              className="block px-4 py-3 text-[#E6E6E6] hover:text-[#00D4B4] hover:bg-[#00D4B4]/10 font-['Inter'] text-base sm:text-lg font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-[#00D4B4]"
-              onClick={() => setIsOpen(false)}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.08, duration: 0.3 }}
-              whileTap={{ scale: 0.98 }}
+              href="#resume"
+              className="px-5 py-2 bg-white text-black text-sm font-semibold rounded-full hover:bg-[#00D4B4] transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => handleNavClick(e, '#resume')}
             >
-              {link.name}
+              Resume
             </motion.a>
-          ))}
-        </div>
-      </motion.div>
-    )}
-  </motion.nav>
-);
+          </div>
 
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-white p-1"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            <div className="w-6 flex flex-col gap-1.5 items-end">
+              <motion.span
+                animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 6 : 0 }}
+                className="w-full h-0.5 bg-white block origin-center transition-transform"
+              />
+              <motion.span
+                animate={{ opacity: isOpen ? 0 : 1 }}
+                className="w-4 h-0.5 bg-[#00D4B4] block transition-opacity"
+              />
+              <motion.span
+                animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -6 : 0 }}
+                className="w-full h-0.5 bg-white block origin-center transition-transform"
+              />
+            </div>
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl flex items-center justify-center md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="flex flex-col items-center gap-8">
+              {navLinks.map((link, i) => (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="text-3xl font-['Montserrat'] font-bold text-white hover:text-[#00D4B4] transition-colors"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                >
+                  <motion.span
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 + i * 0.1 }}
+                  >
+                    {link.name}
+                  </motion.span>
+                </Link>
+              ))}
+              <motion.a
+                href="#resume"
+                className="mt-4 px-8 py-3 bg-[#00D4B4] text-black font-bold rounded-full text-lg"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                onClick={() => setIsOpen(false)}
+              >
+                Resume
+              </motion.a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 };
 
 export default Header;

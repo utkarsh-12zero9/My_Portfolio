@@ -7,6 +7,7 @@ import Footer from "./Layout/Footer";
 import Resume from "./Components/Resume";
 import CustomCursor from "./Components/CustomCursor";
 import { useEffect, useState } from "react";
+import Stats from "./Components/Stats";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -17,8 +18,11 @@ const App = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0A0A0A]">
-        <div className="text-2xl text-[#00D4B4] font-['Montserrat']">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center bg-[#050505]">
+        <div className="relative">
+          <div className="w-16 h-16 border-4 border-[#00D4B4] border-t-transparent rounded-full animate-spin"></div>
+          <div className="absolute inset-0 flex items-center justify-center text-[#00D4B4] font-bold text-xl">U</div>
+        </div>
       </div>
     );
   }
@@ -30,6 +34,7 @@ const App = () => {
       <Hero />
       <About />
       <Projects />
+      <Stats />
       <Resume />
       <Contact />
       <Footer />

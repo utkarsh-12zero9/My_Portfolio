@@ -1,128 +1,127 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 import AyurSutra from "../assets/Images/AyurSutraLandingPage.png";
 import Refokus from "../assets/Images/refokusLandingPage.png";
 import HomeMaid from "../assets/Images/HomeMaid.png";
 import ExamPortal from "../assets/Images/ExamPortal.png";
 
+const ProjectCard = ({ project, index }) => {
+    let mouseX = useMotionValue(0);
+    let mouseY = useMotionValue(0);
+
+    function handleMouseMove({ currentTarget, clientX, clientY }) {
+        let { left, top } = currentTarget.getBoundingClientRect();
+        mouseX.set(clientX - left);
+        mouseY.set(clientY - top);
+    }
+
+    return (
+        <motion.div
+            className={`group relative border border-white/10 bg-gray-900/40 overflow-hidden rounded-3xl hover:border-white/20 transition-colors duration-500 ${index === 0 || index === 3 ? 'md:col-span-2' : 'md:col-span-1'
+                }`}
+            onMouseMove={handleMouseMove}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+        >
+            <motion.div
+                className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
+                style={{
+                    background: useMotionTemplate`
+                        radial-gradient(
+                            650px circle at ${mouseX}px ${mouseY}px,
+                            rgba(0, 212, 180, 0.15),
+                            transparent 80%
+                        )
+                    `,
+                }}
+            />
+
+            <div className="relative h-full flex flex-col">
+                <div className="px-8 pt-8 pb-4 flex-1">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-2xl font-bold font-['Montserrat'] text-white group-hover:text-[#00D4B4] transition-colors">
+                            {project.title}
+                        </h3>
+                        <a
+                            href={project.link}
+                            target="_blank"
+                            className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                        </a>
+                    </div>
+                    <p className="text-gray-400 font-['Inter'] text-sm leading-relaxed mb-6">
+                        {project.description}
+                    </p>
+                </div>
+
+                <div className="relative mt-auto overflow-hidden rounded-b-3xl">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent z-10" />
+                    <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-64 object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
 const Projects = () => {
     const projects = [
         {
             title: "ExamPortal",
-            description: "Built a secure, scalable online exam portal with React, Redux Toolkit, Tailwind CSS, role-based access, real-time proctoring, analytics, and full exam/course management. Added session persistence, mobile responsiveness, accessibility, and deployment-ready builds.",
+            description: "A comprehensive online examination system featuring real-time proctoring, role-based access control, and detailed analytics. Built for scalability and security.",
             link: 'https://modern-online-exam-portal.netlify.app/',
             image: ExamPortal,
         },
         {
             title: 'AyurSutra',
-            description: "AyurSutra, Panchakarma Patient Management and Therapy Scheduling Software. I handled the Frontend development using React, Tailwind CSS, and Axios.",
+            description: "Digital management solution for Panchakarma therapy centers, streamlining patient records and scheduling.",
             link: 'https://aayursutra.netlify.app/',
             image: AyurSutra,
         },
         {
             title: 'HomeMaid',
-            description: 'HomeMaid is a responsive service booking website inspired by real-world needs, crafted with React and Tailwind CSS to deliver a seamless user experience.',
+            description: "On-demand service booking platform connecting homeowners with trusted domestic help professionals.",
             link: 'https://homemaid.netlify.app/',
             image: HomeMaid,
         },
         {
-            title: 'Refokus UI Clone',
-            description: 'A responsive UI clone of the Refokus website, built with React and Tailwind CSS.',
+            title: 'Refokus Clone',
+            description: "Pixel-perfect recreation of the award-winning Refokus website, demonstrating mastery of complex animations and layout.",
             link: 'https://refokus-ui-cl-git-463446-utkarsh-kumar-singhs-projects-f2e44fce.vercel.app/',
             image: Refokus,
         },
     ];
 
     return (
-    <section
-        id="projects"
-        className="min-h-[90vh] bg-transparent relative overflow-hidden py-16 sm:py-20"
-    >
-        {/* Background Animation */}
-        <motion.div
-            className="absolute inset-0 z-0 pointer-events-none opacity-70"
-            animate={{
-                background: [
-                    'radial-gradient(circle at center, rgba(0,212,180,0.10), rgba(123,63,228,0.10))',
-                    'radial-gradient(circle at center, rgba(123,63,228,0.10), rgba(0,212,180,0.10))',
-                ],
-            }}
-            transition={{ duration: 10, repeat: Infinity, repeatType: 'reverse' }}
-        />
+        <section id="projects" className="py-32 relative">
+            <div className="container mx-auto px-8 md:px-16 lg:px-24">
+                <motion.div
+                    className="mb-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                >
+                    <h2 className="text-4xl md:text-6xl font-bold font-['Montserrat'] mb-6">
+                        Selected <span className="text-[#00D4B4]">Works</span>
+                    </h2>
+                    <p className="text-gray-400 max-w-xl text-lg">
+                        A collection of projects that showcase my passion for building robust and beautiful web applications.
+                    </p>
+                </motion.div>
 
-        <div className="container mx-auto px-4 sm:px-6 md:px-20 relative z-10">
-            {/* Section Heading */}
-            <motion.h2
-                className="text-4xl sm:text-5xl md:text-6xl font-['Montserrat'] font-bold text-white mb-10 sm:mb-14 tracking-tight"
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
-                Projects
-            </motion.h2>
-
-            {/* Projects Grid */}
-            <div className="sm:text-sm md:text-md grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-8">
-                {projects.map((project, index) => (
-                    <motion.div
-                        key={project.title}
-                        className="bg-[#121212]/70 backdrop-blur-xl border border-white/10 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-[#00D4B4]/20 transition-all duration-300 hover:-translate-y-2 relative group"
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{
-                            delay: index * 0.1,
-                            duration: 0.6,
-                            type: "spring",
-                            stiffness: 120,
-                        }}
-                    >
-                        {/* Soft Glow Border */}
-                        <motion.div
-                            className="absolute inset-0 rounded-2xl pointer-events-none border border-transparent group-hover:border-[#00D4B4]/40 transition-all duration-300"
-                            animate={{
-                                boxShadow: [
-                                    "0 0 0px rgba(0,212,180,0)",
-                                    "0 0 15px rgba(0,212,180,0.35)",
-                                    "0 0 0px rgba(0,212,180,0)",
-                                ],
-                            }}
-                            transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
-                        />
-
-                        {/* Project Image */}
-                        {project.image && (
-                            <img
-                                src={project.image}
-                                alt={`${project.title} Screenshot`}
-                                className="w-full h-52 object-cover rounded-lg mb-5 shadow-md hover:shadow-xl transition-all duration-300"
-                            />
-                        )}
-
-                        {/* Title */}
-                        <h3 className="text-xl sm:text-2xl font-['Montserrat'] font-semibold text-[#00D4B4] mb-3">
-                            {project.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="text-base sm:text-lg font-['Inter'] text-[#E6E6E6] mb-5 leading-relaxed">
-                            {project.description}
-                        </p>
-
-                        {/* Button */}
-                        <a
-                            href={project.link}
-                            target="_blank"
-                            aria-label={`View ${project.title} Project`}
-                            className="inline-block text-sm sm:text-base font-semibold text-[#00D4B4] hover:text-black border border-[#00D4B4] px-4 py-2 rounded-lg hover:bg-[#00D4B4] transition-all duration-300"
-                        >
-                            View Project
-                        </a>
-                    </motion.div>
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {projects.map((project, index) => (
+                        <ProjectCard key={index} project={project} index={index} />
+                    ))}
+                </div>
             </div>
-        </div>
-    </section>
-);
-
+        </section>
+    );
 };
 
 export default Projects;
