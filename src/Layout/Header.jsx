@@ -50,7 +50,7 @@ const Header = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="glass-panel blur-2xl rounded-full px-6 py-3 flex items-center justify-between md:gap-12 shadow-2xl shadow-black/20">
+        <div className="glass-panel backdrop-blur-xs rounded-full px-6 py-3 flex items-center justify-between md:gap-12 shadow-2xl shadow-black/20">
           {/* Logo */}
           <motion.a
             href="#home"
@@ -157,3 +157,4 @@ const Header = () => {
 
 
 export default Header;
+
