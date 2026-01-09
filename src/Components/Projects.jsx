@@ -14,10 +14,25 @@ const ProjectCard = ({ project, index }) => {
         mouseY.set(clientY - top);
     }
 
+    // Bento grid layout configuration
+    const getCardClasses = () => {
+        // First card: spans 2 columns and 2 rows (large featured)
+        if (index === 0) return 'md:col-span-2 md:row-span-2';
+        // Fourth card: spans 2 columns, 1 row (wide)
+        if (index === 3) return 'md:col-span-2 md:row-span-1';
+        // Other cards: standard 1x1
+        return 'md:col-span-1 md:row-span-1';
+    };
+
+    const getImageHeight = () => {
+        if (index === 0) return 'h-80'; // Taller for large card
+        if (index === 3) return 'h-56'; // Medium for wide card
+        return 'h-64'; // Standard height
+    };
+
     return (
         <motion.div
-            className={`group relative border border-white/10 bg-gray-900/40 overflow-hidden rounded-3xl hover:border-white/20 transition-colors duration-500 ${index === 0 || index === 3 ? 'md:col-span-2' : 'md:col-span-1'
-                }`}
+            className={`group relative border border-white/10 bg-gray-900/40 overflow-hidden rounded-3xl hover:border-white/20 transition-colors duration-500 ${getCardClasses()}`}
             onMouseMove={handleMouseMove}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -61,7 +76,7 @@ const ProjectCard = ({ project, index }) => {
                     <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-64 object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
+                        className={`w-full ${getImageHeight()} object-cover object-top transform group-hover:scale-105 transition-transform duration-700`}
                     />
                 </div>
             </div>
@@ -114,7 +129,7 @@ const Projects = () => {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
                     {projects.map((project, index) => (
                         <ProjectCard key={index} project={project} index={index} />
                     ))}

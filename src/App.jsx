@@ -2,6 +2,7 @@ import Hero from "./Components/Hero";
 import Header from "./Layout/Header";
 import About from "./Components/About";
 import Projects from "./Components/Projects";
+import Internships from "./Components/Internships";
 import Contact from "./Components/Contact";
 import Footer from "./Layout/Footer";
 import Resume from "./Components/Resume";
@@ -34,6 +35,7 @@ const App = () => {
       <Hero />
       <About />
       <Projects />
+      <Internships />
       <Stats />
       <Resume />
       <Contact />
@@ -41,5 +43,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
