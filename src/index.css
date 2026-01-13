@@ -45,9 +45,17 @@ body::before {
   box-sizing: border-box;
 }
 
-/* Scrollbar */
+/* Scrollbar - Cross-browser support */
+* {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #00D4B4 #0a0a0a;
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -55,18 +63,27 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #00D4B4;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #00E5C7;
 }
 
 /* Animations */
 @keyframes glow {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.05); opacity: 0.8; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
 }
 
 .animate-glow {
@@ -78,8 +95,13 @@ body::before {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Utility for glassmorphism */
