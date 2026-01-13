@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaPython, FaJava, FaJs, FaReact, FaGithub, FaCode, FaTrophy, FaStar } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 
 const Stats = () => {
     // --- CONFIGURATION ---
@@ -88,6 +89,16 @@ const Stats = () => {
                         <div className="flex items-center gap-3 mb-2">
                             <FaGithub className="text-3xl text-white" />
                             <h3 className="text-2xl font-semibold text-white">GitHub Activity</h3>
+                            <a
+                                href={`https://github.com/${githubUsername}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all"
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: "#2dd4bf" }}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
                         </div>
 
                         {/* GitHub Stats Card */}
@@ -96,7 +107,12 @@ const Stats = () => {
                                 <img
                                     src={githubStatsUrl}
                                     alt="GitHub Stats"
+                                    loading="lazy"
                                     className="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = `https://github-readme-stats-sigma-five.vercel.app/api?username=${githubUsername}${themeParams}`;
+                                    }}
                                 />
                             </div>
                         </div>
@@ -107,7 +123,12 @@ const Stats = () => {
                                 <img
                                     src={githubTopLangsUrl}
                                     alt="Top Languages"
+                                    loading="lazy"
                                     className="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = `https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=${githubUsername}&layout=compact&langs_count=6&hide_progress=false${themeParams}`;
+                                    }}
                                 />
                             </div>
                         </div>
@@ -116,8 +137,18 @@ const Stats = () => {
                     {/* --- RIGHT COLUMN: LEETCODE --- */}
                     <div className="space-y-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <FaCode className="text-3xl text-[#2dd4bf]" />
+                            <SiLeetcode className="text-3xl text-orange-400" />
                             <h3 className="text-2xl font-semibold text-white">LeetCode Metrics</h3>
+                            <a
+                                href={`https://leetcode.com/${leetcodeUsername}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all"
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: "#2dd4bf" }}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
                         </div>
 
                         {/* Custom LeetCode Card */}
@@ -141,50 +172,52 @@ const Stats = () => {
                                     </div>
                                 ) : (
                                     <>
-                                        {/* Header Stats */}
-                                        <div className="flex justify-between items-start mb-8 relative z-10">
-                                            <div>
-                                                <h4 className="text-gray-400 text-sm uppercase tracking-wider font-semibold">Global Ranking</h4>
-                                                <p className="text-2xl font-bold text-white flex items-center gap-2">
-                                                    <FaTrophy className="text-yellow-500" />
-                                                    {leetcodeData.ranking.toLocaleString()}
-                                                </p>
-                                            </div>
-                                            <div className="text-right">
-                                                <h4 className="text-gray-400 text-sm uppercase tracking-wider font-semibold">Acceptance</h4>
-                                                <p className="text-2xl font-bold text-white">{leetcodeData.acceptanceRate}%</p>
-                                            </div>
-                                        </div>
-
-                                        {/* Main Circular Visualization */}
-                                        <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
-                                            {/* Donut Chart Area */}
+                                        {/* Upper Section - Pie Chart */}
+                                        <div className="flex items-center justify-center py-8 border-b border-white/5">
                                             <div className="relative">
-                                                <svg className="w-40 h-40 transform -rotate-90">
+                                                <svg className="w-48 h-48 transform -rotate-90">
                                                     {/* Background Circle */}
-                                                    <circle cx="80" cy="80" r="70" stroke="#1f2937" strokeWidth="12" fill="transparent" />
+                                                    <circle cx="96" cy="96" r="80" stroke="#1f2937" strokeWidth="14" fill="transparent" />
                                                     {/* Progress Circle */}
                                                     <circle
-                                                        cx="80"
-                                                        cy="80"
-                                                        r="70"
+                                                        cx="96"
+                                                        cy="96"
+                                                        r="80"
                                                         stroke="#2dd4bf"
-                                                        strokeWidth="12"
+                                                        strokeWidth="14"
                                                         fill="transparent"
-                                                        strokeDasharray={440}
-                                                        strokeDashoffset={440 - (440 * (leetcodeData.totalSolved / leetcodeData.totalQuestions))}
+                                                        strokeDasharray={502}
+                                                        strokeDashoffset={502 - (502 * (leetcodeData.totalSolved / leetcodeData.totalQuestions))}
                                                         strokeLinecap="round"
                                                         className="transition-all duration-1000 ease-out"
                                                     />
                                                 </svg>
                                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                                                    <span className="text-3xl font-bold text-white block">{leetcodeData.totalSolved}</span>
-                                                    <span className="text-xs text-gray-500 uppercase">Solved</span>
+                                                    <span className="text-4xl font-bold text-white block">{leetcodeData.totalSolved}</span>
+                                                    <span className="text-sm text-gray-500 uppercase tracking-wide">Solved</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Lower Section - Stats & Breakdown */}
+                                        <div className="pt-6 space-y-6">
+                                            {/* Global Ranking & Acceptance Rate */}
+                                            <div className="grid grid-cols-2 gap-4 pb-4 border-b border-white/5">
+                                                <div className="text-center">
+                                                    <h4 className="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-2">Global Ranking</h4>
+                                                    <p className="text-xl font-bold text-white flex items-center justify-center gap-2">
+                                                        <FaTrophy className="text-yellow-500 text-lg" />
+                                                        {leetcodeData.ranking.toLocaleString()}
+                                                    </p>
+                                                </div>
+                                                <div className="text-center">
+                                                    <h4 className="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-2">Acceptance</h4>
+                                                    <p className="text-xl font-bold text-white">{leetcodeData.acceptanceRate}%</p>
                                                 </div>
                                             </div>
 
-                                            {/* Detailed Breakdown */}
-                                            <div className="flex-1 w-full space-y-4">
+                                            {/* Difficulty Breakdown */}
+                                            <div className="space-y-4">
                                                 {/* Easy */}
                                                 <div className="group">
                                                     <div className="flex justify-between text-sm mb-1">

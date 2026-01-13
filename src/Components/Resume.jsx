@@ -18,7 +18,7 @@ const Resume = () => {
 
           <div className="glass-panel p-8 md:p-12 rounded-3xl">
             <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-['Inter']">
-              I'm <span className="text-[#00D4B4] font-semibold">Utkarsh Kumar Singh</span>, a full-stack MERN developer from Ghaziabad, India. I blend creativity with technical skills to deliver pixel-perfect designs and robust applications.
+              I'm <span className="text-[#00D4B4] font-semibold">Utkarsh Kumar Singh</span>, a MERN Stack Developer from Ghaziabad, India. I blend creativity with technical skills to deliver pixel-perfect designs and robust production-ready applications.
             </p>
 
             <div className="mb-10">

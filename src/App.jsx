@@ -14,15 +14,31 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 500);
+    setTimeout(() => setLoading(false), 900);
   }, []);
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#050505]">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-[#00D4B4] border-t-transparent rounded-full animate-spin"></div>
-          <div className="absolute inset-0 flex items-center justify-center text-[#00D4B4] font-bold text-xl">U</div>
+          {/* Container */}
+          <div className="border-2 border-white/20 rounded-xl px-12 py-6 overflow-hidden relative">
+            {/* Animated fill */}
+            <div className="absolute inset-0 bg-[#00D4B4] origin-left animate-pulse" style={{
+              animation: 'fillLeftToRight 2s ease-in-out infinite',
+              transformOrigin: 'left'
+            }}></div>
+            {/* Text */}
+            <div className="relative z-10 text-white font-bold text-2xl tracking-wide">Utkarsh</div>
+          </div>
+          {/* CSS Animation */}
+          <style jsx>{`
+            @keyframes fillLeftToRight {
+              0% { transform: scaleX(0); }
+              50% { transform: scaleX(1); }
+              100% { transform: scaleX(0); }
+            }
+          `}</style>
         </div>
       </div>
     );
@@ -34,8 +50,8 @@ const App = () => {
       <Header />
       <Hero />
       <About />
-      <Projects />
       <Internships />
+      <Projects />
       <Stats />
       <Resume />
       <Contact />

@@ -32,7 +32,7 @@ const Hero = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
                     >
-                        <span className="text-[#00D4B4] font-mono text-sm tracking-wider">Available for work</span>
+                        <span className="text-[#00D4B4] font-mono text-sm tracking-wider"># Available for work</span>
                     </motion.div>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-['Montserrat'] leading-tight tracking-tighter mb-6">
@@ -52,7 +52,7 @@ const Hero = () => {
                     <div className="flex flex-wrap gap-4">
                         <motion.a
                             href="#projects"
-                            className="px-8 py-4 bg-[#E6E6E6] text-black font-bold rounded-full hover:bg-white transition-colors flex items-center gap-2 group"
+                            className="px-8 py-4 bg-[#E6E6E6] text-black font-bold rounded-full transition-colors flex items-center gap-2 group hover:bg-[#00D4B4] hover:text-white"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >
@@ -61,7 +61,7 @@ const Hero = () => {
                         </motion.a>
                         <motion.a
                             href="#contact"
-                            className="px-8 py-4 border border-white/20 text-white font-medium rounded-full hover:bg-white/5 transition-colors"
+                            className="px-8 py-4 border border-white/20 text-white font-medium rounded-full hover:bg-[#00D4B4] hover:text-white transition-colors"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >

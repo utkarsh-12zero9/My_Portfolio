@@ -5,7 +5,7 @@ const About = () => {
     const skills = [
         'JavaScript (ES6+)', 'React', 'Node.js', 'TypeScript',
         'Tailwind CSS', 'Next.js', 'MongoDB', 'PostgreSQL',
-        'Git', 'GSAP', 'Framer Motion'
+        'Git', 'GSAP', 'Framer Motion', 'DSA', 'Express.js', 'Version Control'
     ];
 
     const education = [

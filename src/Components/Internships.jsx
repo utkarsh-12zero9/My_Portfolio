@@ -107,7 +107,7 @@ const Internships = () => {
             company: "Rablo Innovative",
             role: "Frontend Developer & Frontend Team Lead",
             duration: "November 2025 - Present",
-            website: "https://rablo.in",
+            website: "https://www.linkedin.com/company/rabloskillup/",
             responsibilities: [
                 "Led the frontend development for core product features at Rablo.in, delivering high-fidelity, scalable, and responsive user interfaces from complex Figma designs using Next.js and TypeScript.",
                 "Owned frontend architecture and component structure, enforced code quality through reviews, and guided team members on best practices.",
