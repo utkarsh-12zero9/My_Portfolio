@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaPython, FaJava, FaJs, FaReact, FaGithub, FaCode, FaTrophy, FaStar } from 'react-icons/fa';
+import { FaGithub, FaCode, FaTrophy } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 
 const Stats = () => {
-    // --- CONFIGURATION ---
+    // --- CONFIG ---
     const githubUsername = "utkarsh-12zero9";
     const leetcodeUsername = "utkarsh_12zero9";
 
-    // --- State ---
+    // --- STATE ---
     const [leetcodeData, setLeetcodeData] = useState(null);
     const [loadingLeetcode, setLoadingLeetcode] = useState(true);
     const [leetcodeError, setLeetcodeError] = useState(null);
 
+    // --- FETCH LEETCODE ---
     useEffect(() => {
         const fetchLeetCode = async () => {
             try {
-                const response = await axios.get(`https://leetcode-stats-api.herokuapp.com/${leetcodeUsername}`);
-                if (response.data.status === "error") throw new Error("User not found");
+                const response = await axios.get(
+                    `https://alfa-leetcode-api.onrender.com/${leetcodeUsername}`
+                );
+
+                console.log("LeetCode Data:", response.data);
+
                 setLeetcodeData(response.data);
             } catch (error) {
                 console.error(error);
@@ -26,246 +31,200 @@ const Stats = () => {
                 setLoadingLeetcode(false);
             }
         };
+
         fetchLeetCode();
     }, [leetcodeUsername]);
 
-    // --- GitHub URL Construction ---
-    const themeParams = "&bg_color=0a0a0a&title_color=2dd4bf&text_color=e2e8f0&icon_color=2dd4bf&hide_border=true&show_icons=true&include_all_commits=true&count_private=true";
+    // --- GITHUB URLS ---
+    const themeParams =
+        "&bg_color=0a0a0a&title_color=2dd4bf&text_color=e2e8f0&icon_color=2dd4bf&hide_border=true&show_icons=true&include_all_commits=true&count_private=true";
+
     const githubStatsUrl = `https://github-readme-stats.vercel.app/api?username=${githubUsername}${themeParams}`;
     const githubTopLangsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${githubUsername}&layout=compact&langs_count=6&hide_progress=false${themeParams}`;
 
-    // --- Circular Progress Bar ---
-    const CircleProgress = ({ percentage, color }) => {
-        const radius = 30;
-        const dashArray = radius * Math.PI * 2;
-        const dashOffset = dashArray - (dashArray * percentage) / 100;
+    // --- SAFE VALUES ---
+    const totalSolved = leetcodeData?.totalSolved || 0;
 
-        return (
-            <div className="relative w-32 h-32 flex items-center justify-center">
-                <svg width="100%" height="100%" viewBox="0 0 80 80" className="rotate-[-90deg]">
-                    <circle cx="40" cy="40" r={radius} fill="transparent" stroke="#333" strokeWidth="6" />
-                    <circle
-                        cx="40"
-                        cy="40"
-                        r={radius}
-                        fill="transparent"
-                        stroke={color}
-                        strokeWidth="6"
-                        strokeDasharray={dashArray}
-                        strokeDashoffset={dashOffset}
-                        strokeLinecap="round"
-                        className="transition-all duration-1000 ease-out"
-                    />
-                </svg>
-                <div className="absolute text-white text-lg font-bold">
-                    {Math.round(percentage)}%
-                </div>
-            </div>
-        );
-    };
+    const totalQuestions =
+        leetcodeData?.totalQuestions ||
+        ((leetcodeData?.totalEasy || 0) +
+            (leetcodeData?.totalMedium || 0) +
+            (leetcodeData?.totalHard || 0));
+
+    const progress = totalQuestions ? totalSolved / totalQuestions : 0;
 
     return (
-        <section id="stats" className="py-24 bg-[#050505] relative overflow-hidden">
-            {/* Background Gradients */}
-            <div className="absolute top-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2"></div>
+        <section className="py-24 bg-[#050505]">
+            <div className="container mx-auto px-6 lg:px-12">
 
-            <div className="container mx-auto px-6 lg:px-12 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-                {/* Header */}
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-                        Code <span className="text-transparent bg-clip-text bg-[#2dd4bf] ">Analytics</span>
-                    </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                        A deep dive into my development journey, problem-solving metrics, and open source contributions.
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-
-                    {/* --- LEFT COLUMN: GITHUB --- */}
+                    {/* ---------------- GITHUB ---------------- */}
                     <div className="space-y-6">
-                        <div className="flex items-center gap-3 mb-2">
+
+                        <div className="flex items-center gap-3">
                             <FaGithub className="text-3xl text-white" />
-                            <h3 className="text-2xl font-semibold text-white">GitHub Activity</h3>
-                            <a
-                                href={`https://github.com/${githubUsername}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all"
-                            >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: "#2dd4bf" }}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
+                            <h3 className="text-2xl text-white">GitHub Activity</h3>
                         </div>
 
-                        {/* GitHub Stats Card */}
-                        <div className="group relative p-[1px] rounded-2xl bg-gradient-to-br from-gray-800 to-transparent hover:from-[#2dd4bf] hover:to-purple-500 transition-all duration-500">
-                            <div className="bg-[#0a0a0a]/95 backdrop-blur-xl rounded-2xl p-4 h-full w-full">
-                                <img
-                                    src={githubStatsUrl}
-                                    alt="GitHub Stats"
-                                    loading="lazy"
-                                    className="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity"
-                                    onError={(e) => {
-                                        e.target.onerror = null;
-                                        e.target.src = `https://github-readme-stats-sigma-five.vercel.app/api?username=${githubUsername}${themeParams}`;
-                                    }}
-                                />
-                            </div>
+                        <div className="bg-[#0a0a0a] p-4 rounded-xl">
+                            <img
+                                src={githubStatsUrl}
+                                alt="GitHub Stats"
+                                className="w-full"
+                            />
                         </div>
 
-                        {/* Top Languages Card */}
-                        <div className="group relative p-[1px] rounded-2xl bg-gradient-to-br from-gray-800 to-transparent hover:from-[#2dd4bf] hover:to-purple-500 transition-all duration-500">
-                            <div className="bg-[#0a0a0a]/95 backdrop-blur-xl rounded-2xl p-4 h-full w-full">
-                                <img
-                                    src={githubTopLangsUrl}
-                                    alt="Top Languages"
-                                    loading="lazy"
-                                    className="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity"
-                                    onError={(e) => {
-                                        e.target.onerror = null;
-                                        e.target.src = `https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=${githubUsername}&layout=compact&langs_count=6&hide_progress=false${themeParams}`;
-                                    }}
-                                />
-                            </div>
+                        <div className="bg-[#0a0a0a] p-4 rounded-xl">
+                            <img
+                                src={githubTopLangsUrl}
+                                alt="Top Languages"
+                                className="w-full"
+                            />
                         </div>
                     </div>
 
-                    {/* --- RIGHT COLUMN: LEETCODE --- */}
+                    {/* ---------------- LEETCODE ---------------- */}
                     <div className="space-y-6">
-                        <div className="flex items-center gap-3 mb-2">
+
+                        <div className="flex items-center gap-3">
                             <SiLeetcode className="text-3xl text-orange-400" />
-                            <h3 className="text-2xl font-semibold text-white">LeetCode Metrics</h3>
-                            <a
-                                href={`https://leetcode.com/${leetcodeUsername}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all"
-                            >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: "#2dd4bf" }}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
+                            <h3 className="text-2xl text-white">LeetCode Metrics</h3>
                         </div>
 
-                        {/* Custom LeetCode Card */}
-                        <div className="relative p-[1px] rounded-3xl bg-gradient-to-br from-gray-800 to-gray-900 hover:from-[#2dd4bf] hover:to-cyan-500 transition-all duration-500 shadow-2xl shadow-black/50">
-                            <div className="bg-[#0e0e0e] rounded-3xl p-8 h-full w-full relative overflow-hidden">
-                                {/* Subtle Background Pattern */}
-                                <div className="absolute top-0 right-0 p-10 opacity-5">
-                                    <FaCode size={150} />
+                        <div className="bg-[#0e0e0e] p-8 rounded-2xl">
+
+                            {loadingLeetcode ? (
+                                <div className="h-[250px] flex items-center justify-center text-gray-400">
+                                    Loading LeetCode Data...
                                 </div>
+                            ) : leetcodeError ? (
+                                <div className="h-[250px] flex flex-col items-center justify-center text-red-400">
+                                    <p className="text-xl font-bold">API Error</p>
+                                    <p className="text-sm">Try again later</p>
+                                </div>
+                            ) : (
+                                <>
+                                    {/* Progress Circle */}
+                                    <div className="flex justify-center mb-6">
+                                        <div className="relative">
+                                            <svg className="w-40 h-40 -rotate-90">
+                                                <circle
+                                                    cx="80"
+                                                    cy="80"
+                                                    r="70"
+                                                    stroke="#1f2937"
+                                                    strokeWidth="10"
+                                                    fill="transparent"
+                                                />
+                                                <circle
+                                                    cx="80"
+                                                    cy="80"
+                                                    r="70"
+                                                    stroke="#2dd4bf"
+                                                    strokeWidth="10"
+                                                    fill="transparent"
+                                                    strokeDasharray={440}
+                                                    strokeDashoffset={440 - (440 * progress)}
+                                                    strokeLinecap="round"
+                                                />
+                                            </svg>
 
-                                {loadingLeetcode ? (
-                                    <div className="h-[300px] flex flex-col items-center justify-center animate-pulse gap-4">
-                                        <div className="w-24 h-24 rounded-full bg-gray-800"></div>
-                                        <div className="w-3/4 h-4 bg-gray-800 rounded"></div>
-                                        <div className="w-1/2 h-4 bg-gray-800 rounded"></div>
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                                <span className="text-3xl text-white font-bold">
+                                                    {totalSolved}
+                                                </span>
+                                                <span className="text-gray-400 text-sm">
+                                                    Solved
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                ) : leetcodeError ? (
-                                    <div className="h-[300px] flex flex-col items-center justify-center text-red-400 text-center">
-                                        <p className="text-xl font-bold">User Not Found</p>
-                                        <p className="text-sm text-gray-500">Please check the username in configuration.</p>
+
+                                    {/* Ranking & Acceptance */}
+                                    <div className="grid grid-cols-2 gap-4 mb-6">
+
+                                        <div className="text-center">
+                                            <p className="text-gray-400 text-sm">Ranking</p>
+                                            <p className="text-white font-bold flex justify-center items-center gap-2">
+                                                <FaTrophy className="text-yellow-500" />
+                                                {leetcodeData?.ranking
+                                                    ? leetcodeData.ranking.toLocaleString()
+                                                    : "N/A"}
+                                            </p>
+                                        </div>
+
+                                        <div className="text-center">
+                                            <p className="text-gray-400 text-sm">Acceptance</p>
+                                            <p className="text-white font-bold">
+                                                {leetcodeData?.acceptanceRate || "N/A"}%
+                                            </p>
+                                        </div>
                                     </div>
-                                ) : (
-                                    <>
-                                        {/* Upper Section - Pie Chart */}
-                                        <div className="flex items-center justify-center py-8 border-b border-white/5">
-                                            <div className="relative">
-                                                <svg className="w-48 h-48 transform -rotate-90">
-                                                    {/* Background Circle */}
-                                                    <circle cx="96" cy="96" r="80" stroke="#1f2937" strokeWidth="14" fill="transparent" />
-                                                    {/* Progress Circle */}
-                                                    <circle
-                                                        cx="96"
-                                                        cy="96"
-                                                        r="80"
-                                                        stroke="#2dd4bf"
-                                                        strokeWidth="14"
-                                                        fill="transparent"
-                                                        strokeDasharray={502}
-                                                        strokeDashoffset={502 - (502 * (leetcodeData.totalSolved / leetcodeData.totalQuestions))}
-                                                        strokeLinecap="round"
-                                                        className="transition-all duration-1000 ease-out"
-                                                    />
-                                                </svg>
-                                                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                                                    <span className="text-4xl font-bold text-white block">{leetcodeData.totalSolved}</span>
-                                                    <span className="text-sm text-gray-500 uppercase tracking-wide">Solved</span>
-                                                </div>
+
+                                    {/* Difficulty Bars */}
+                                    <div className="space-y-4">
+
+                                        {/* Easy */}
+                                        <div>
+                                            <div className="flex justify-between text-sm mb-1">
+                                                <span className="text-teal-400">Easy</span>
+                                                <span>
+                                                    {leetcodeData?.easySolved || 0} / {leetcodeData?.totalEasy || 0}
+                                                </span>
+                                            </div>
+                                            <div className="bg-gray-800 h-2 rounded">
+                                                <div
+                                                    className="bg-teal-400 h-2 rounded"
+                                                    style={{
+                                                        width: `${((leetcodeData?.easySolved || 0) / (leetcodeData?.totalEasy || 1)) * 100}%`
+                                                    }}
+                                                />
                                             </div>
                                         </div>
 
-                                        {/* Lower Section - Stats & Breakdown */}
-                                        <div className="pt-6 space-y-6">
-                                            {/* Global Ranking & Acceptance Rate */}
-                                            <div className="grid grid-cols-2 gap-4 pb-4 border-b border-white/5">
-                                                <div className="text-center">
-                                                    <h4 className="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-2">Global Ranking</h4>
-                                                    <p className="text-xl font-bold text-white flex items-center justify-center gap-2">
-                                                        <FaTrophy className="text-yellow-500 text-lg" />
-                                                        {leetcodeData.ranking.toLocaleString()}
-                                                    </p>
-                                                </div>
-                                                <div className="text-center">
-                                                    <h4 className="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-2">Acceptance</h4>
-                                                    <p className="text-xl font-bold text-white">{leetcodeData.acceptanceRate}%</p>
-                                                </div>
+                                        {/* Medium */}
+                                        <div>
+                                            <div className="flex justify-between text-sm mb-1">
+                                                <span className="text-yellow-400">Medium</span>
+                                                <span>
+                                                    {leetcodeData?.mediumSolved || 0} / {leetcodeData?.totalMedium || 0}
+                                                </span>
                                             </div>
-
-                                            {/* Difficulty Breakdown */}
-                                            <div className="space-y-4">
-                                                {/* Easy */}
-                                                <div className="group">
-                                                    <div className="flex justify-between text-sm mb-1">
-                                                        <span className="text-teal-400 font-medium">Easy</span>
-                                                        <span className="text-gray-400">{leetcodeData.easySolved} <span className="text-gray-600">/ {leetcodeData.totalEasy}</span></span>
-                                                    </div>
-                                                    <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-                                                        <div
-                                                            className="bg-teal-400 h-2 rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)] transition-all duration-1000"
-                                                            style={{ width: `${(leetcodeData.easySolved / leetcodeData.totalEasy) * 100}%` }}
-                                                        ></div>
-                                                    </div>
-                                                </div>
-
-                                                {/* Medium */}
-                                                <div className="group">
-                                                    <div className="flex justify-between text-sm mb-1">
-                                                        <span className="text-yellow-400 font-medium">Medium</span>
-                                                        <span className="text-gray-400">{leetcodeData.mediumSolved} <span className="text-gray-600">/ {leetcodeData.totalMedium}</span></span>
-                                                    </div>
-                                                    <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-                                                        <div
-                                                            className="bg-yellow-400 h-2 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.5)] transition-all duration-1000"
-                                                            style={{ width: `${(leetcodeData.mediumSolved / leetcodeData.totalMedium) * 100}%` }}
-                                                        ></div>
-                                                    </div>
-                                                </div>
-
-                                                {/* Hard */}
-                                                <div className="group">
-                                                    <div className="flex justify-between text-sm mb-1">
-                                                        <span className="text-red-400 font-medium">Hard</span>
-                                                        <span className="text-gray-400">{leetcodeData.hardSolved} <span className="text-gray-600">/ {leetcodeData.totalHard}</span></span>
-                                                    </div>
-                                                    <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-                                                        <div
-                                                            className="bg-red-400 h-2 rounded-full shadow-[0_0_10px_rgba(248,113,113,0.5)] transition-all duration-1000"
-                                                            style={{ width: `${(leetcodeData.hardSolved / leetcodeData.totalHard) * 100}%` }}
-                                                        ></div>
-                                                    </div>
-                                                </div>
+                                            <div className="bg-gray-800 h-2 rounded">
+                                                <div
+                                                    className="bg-yellow-400 h-2 rounded"
+                                                    style={{
+                                                        width: `${((leetcodeData?.mediumSolved || 0) / (leetcodeData?.totalMedium || 1)) * 100}%`
+                                                    }}
+                                                />
                                             </div>
                                         </div>
-                                    </>
-                                )}
-                            </div>
+
+                                        {/* Hard */}
+                                        <div>
+                                            <div className="flex justify-between text-sm mb-1">
+                                                <span className="text-red-400">Hard</span>
+                                                <span>
+                                                    {leetcodeData?.hardSolved || 0} / {leetcodeData?.totalHard || 0}
+                                                </span>
+                                            </div>
+                                            <div className="bg-gray-800 h-2 rounded">
+                                                <div
+                                                    className="bg-red-400 h-2 rounded"
+                                                    style={{
+                                                        width: `${((leetcodeData?.hardSolved || 0) / (leetcodeData?.totalHard || 1)) * 100}%`
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
