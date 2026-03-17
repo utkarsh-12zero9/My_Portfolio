@@ -6,7 +6,7 @@ import { SiLeetcode } from 'react-icons/si';
 const Stats = () => {
     // --- CONFIGURATION ---
     const githubUsername = "utkarsh-12zero9";
-    const leetcodeUsername = "utkarsh120903";
+    const leetcodeUsername = "utkarsh_12zero9";
 
     // --- State ---
     const [leetcodeData, setLeetcodeData] = useState(null);
