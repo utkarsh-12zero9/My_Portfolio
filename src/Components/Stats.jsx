@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+// import axios from 'axios'; // Commented out - using dummy data instead
 import { FaGithub, FaCode, FaTrophy } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 
@@ -9,11 +9,25 @@ const Stats = () => {
     const leetcodeUsername = "utkarsh_12zero9";
 
     // --- STATE ---
-    const [leetcodeData, setLeetcodeData] = useState(null);
-    const [loadingLeetcode, setLoadingLeetcode] = useState(true);
-    const [leetcodeError, setLeetcodeError] = useState(null);
+    // Dummy data from LeetCode profile (commented out API call)
+    const [leetcodeData] = useState({
+        totalSolved: 485,
+        totalQuestions: 3873,
+        totalEasy: 932,
+        totalMedium: 2026,
+        totalHard: 915,
+        easySolved: 238,
+        mediumSolved: 223,
+        hardSolved: 24,
+        ranking: 442475,
+        acceptanceRate: 52.5
+    });
+    const [loadingLeetcode] = useState(false);
+    const [leetcodeError] = useState(null);
 
     // --- FETCH LEETCODE ---
+    // API call commented out - using dummy data instead
+    /*
     useEffect(() => {
         const fetchLeetCode = async () => {
             try {
@@ -34,6 +48,7 @@ const Stats = () => {
 
         fetchLeetCode();
     }, [leetcodeUsername]);
+    */
 
     // --- GITHUB URLS ---
     const themeParams =
