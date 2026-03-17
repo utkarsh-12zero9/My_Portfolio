@@ -147,7 +147,7 @@ const Stats = () => {
 
                                             <div className="absolute inset-0 flex flex-col items-center justify-center">
                                                 <span className="text-3xl text-white font-bold">
-                                                    {totalSolved}
+                                                    {totalSolved}+
                                                 </span>
                                                 <span className="text-gray-400 text-sm">
                                                     Solved
