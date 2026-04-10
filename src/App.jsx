@@ -9,6 +9,7 @@ import Resume from "./Components/Resume";
 import CustomCursor from "./Components/CustomCursor";
 import { useEffect, useState } from "react";
 import Stats from "./Components/Stats";
+import Journey from "./Components/Journey";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -50,6 +51,7 @@ const App = () => {
       <Header />
       <Hero />
       <About />
+      <Journey />
       <Internships />
       <Projects />
       <Stats />

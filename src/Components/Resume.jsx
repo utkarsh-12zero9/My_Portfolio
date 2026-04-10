@@ -4,7 +4,7 @@ const Resume = () => {
   const skillsPreview = ['Full-Stack Development', 'MERN Stack', 'Version Control', 'Problem Solving'];
 
   return (
-    <section id="resume" className="py-32 relative overflow-hidden">
+    <section id="resume" className="py-16 relative overflow-hidden">
       <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10">
         <motion.div
           className="max-w-4xl mx-auto text-center"
@@ -18,7 +18,7 @@ const Resume = () => {
 
           <div className="glass-panel p-8 md:p-12 rounded-3xl">
             <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-['Inter']">
-              I'm <span className="text-[#00D4B4] font-semibold">Utkarsh Kumar Singh</span>, a MERN Stack Developer from Ghaziabad, India. I blend creativity with technical skills to deliver pixel-perfect designs and robust production-ready applications.
+              I'm <span className="text-[#00D4B4] font-semibold">Utkarsh Kumar Singh</span>, a Frontend Developer and Team Lead from Ghaziabad, India. I specialize in building scalable, high-performance web applications using React, Next.js, and TypeScript, with a focus on delivering exceptional user experiences.
             </p>
 
             <div className="mb-10">

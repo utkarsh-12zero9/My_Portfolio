@@ -99,19 +99,19 @@ const Projects = () => {
     const projects = [
         {
             title: "ExamPortal",
-            description: "A comprehensive online examination system featuring real-time proctoring, role-based access control, and detailed analytics. Built for scalability and security.",
+            description: "Designed and developed a secure, scalable online exam portal enabling educational institutions to manage exams and users with React, Redux Toolkit, Tailwind CSS, Lucide React, and React Router.",
             category: "Full Stack",
             link: 'https://modern-online-exam-portal.netlify.app/',
             image: ExamPortal,
-            tech: ["React", "Node.js", "MongoDB", "Express.js", "Socket.io"]
+            tech: ["React", "Redux Toolkit", "Node.js", "MongoDB", "Tailwind CSS", "Lucide React"]
         },
         {
             title: 'HomeMaid',
-            description: "On-demand service booking platform connecting homeowners with trusted domestic help professionals.",
+            description: "Developed a responsive service booking web app to hire local domestic help using modern frontend stack. Ensured cross-device compatibility and deployed using Netlify.",
             category: "Service Platform",
             link: 'https://homemaid.netlify.app/',
             image: HomeMaid,
-            tech: ["React", "Redux", "REST API"]
+            tech: ["React", "Redux", "REST API", "Tailwind CSS", "Netlify"]
         },
         {
             title: 'AyurSutra',
@@ -132,7 +132,7 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="py-32 relative">
+        <section id="projects" className="py-16 relative">
             <div className="container mx-auto px-8 md:px-16 lg:px-24">
                 <motion.div
                     className="mb-16"

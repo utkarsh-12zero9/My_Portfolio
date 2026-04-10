@@ -4,25 +4,31 @@ import { useRef } from 'react';
 const About = () => {
     const skills = [
         'JavaScript (ES6+)', 'React', 'Node.js', 'TypeScript',
-        'Tailwind CSS', 'Next.js', 'MongoDB', 'PostgreSQL',
-        'Git', 'GSAP', 'Framer Motion', 'DSA', 'Express.js', 'Version Control'
+        'Tailwind CSS', 'Next.js', 'MongoDB', 'Python',
+        'C/C++', 'Java', 'Machine Learning', 'Redux Toolkit',
+        'Express.js', 'Git', 'GSAP', 'Framer Motion', 'DSA'
     ];
 
     const education = [
         {
             degree: 'B.Tech in CSE (AI&ML)',
-            institution: 'KIET Group of Institutions',
-            year: '2023-Present'
+            institution: 'KIET Group of Institutions (AKTU)',
+            year: '2023-2027'
         },
         {
-            degree: 'Higher Secondary School (PCM)',
+            degree: 'Higher Secondary (12th)',
             institution: 'Army Public School',
-            year: '2021-22'
+            year: '2021-2022 | 83.8%'
+        },
+        {
+            degree: 'Secondary (10th)',
+            institution: 'Army Public School',
+            year: '2019-2020 | 89%'
         },
     ];
 
     return (
-        <section id="about" className="py-32 relative overflow-hidden">
+        <section id="about" className="py-16 relative overflow-hidden">
             <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10">
                 <div className="grid md:grid-cols-2 gap-16 items-start">
                     {/* Left Column: Bio */}
@@ -38,10 +44,10 @@ const About = () => {
 
                         <div className="space-y-6 text-lg text-gray-400 font-['Inter'] leading-relaxed">
                             <p>
-                                I’m a passionate Full Stack Developer based in Ghaziabad, India. My journey in tech started with a curiosity for how things work on the web, which quickly evolved into a career building robust applications.
+                                I’m a passionate Frontend Developer and Team Lead based in Ghaziabad, India. My journey in tech started with a curiosity for how things work on the web, which evolved into a career building scalable, high-fidelity applications.
                             </p>
                             <p>
-                                I specialize in the MERN stack and modern frontend ecosystems. I love solving complex problems and translating them into intuitive, pixel-perfect user interfaces. When I'm not coding, I'm exploring new technologies or contributing to open source.
+                                I specialize in modern frontend ecosystems like React, Next.js, and TypeScript. I have a strong foundation in DSA and a keen eye for translating complex Figma designs into pixel-perfect interfaces. Currently, I'm expanding my horizons into Machine Learning and AI.
                             </p>
                         </div>
 

@@ -83,7 +83,7 @@ const InternshipCard = ({ internship, index }) => {
 
                 {/* Technologies Badge */}
                 {internship.technologies && (
-                    <div className="mt-6 pt-6 border-t border-white/5">
+                    <div className="mt-6 pt-6 border-t border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div className="flex flex-wrap gap-2">
                             {internship.technologies.map((tech, idx) => (
                                 <span
@@ -93,6 +93,36 @@ const InternshipCard = ({ internship, index }) => {
                                     {tech}
                                 </span>
                             ))}
+                        </div>
+
+                        {/* Certificate & LOR Links */}
+                        <div className="flex gap-3">
+                            {internship.certificateUrl && (
+                                <a
+                                    href={internship.certificateUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-[#00D4B4] rounded-xl hover:bg-white transition-colors"
+                                >
+                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    Certificate
+                                </a>
+                            )}
+                            {internship.lorUrl && (
+                                <a
+                                    href={internship.lorUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-white/10 border border-white/10 rounded-xl hover:bg-[#00D4B4] hover:text-black transition-colors"
+                                >
+                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    LOR
+                                </a>
+                            )}
                         </div>
                     </div>
                 )}
@@ -106,19 +136,22 @@ const Internships = () => {
         {
             company: "Rablo Innovative",
             role: "Frontend Developer & Frontend Team Lead",
-            duration: "November 2025 - Present",
+            duration: "November 2025 - February 2026",
             website: "https://www.linkedin.com/company/rabloskillup/",
             responsibilities: [
-                "Led the frontend development for core product features at Rablo.in, delivering high-fidelity, scalable, and responsive user interfaces from complex Figma designs using Next.js and TypeScript.",
-                "Owned frontend architecture and component structure, enforced code quality through reviews, and guided team members on best practices.",
-                "Integrated backend APIs for authentication, onboarding, user data, and business logic, while optimizing performance and ensuring consistent cross-device user experience."
+                "Served as Frontend Team Lead at Rablo.in; built 35% of core product features (including dashboards and UI modules) and led their implementation across development, API integration, and deployment.",
+                "Built high-fidelity, scalable, and responsive user interfaces from complex Figma designs using Next.js and TypeScript.",
+                "Owned frontend architecture and component design, enforced code quality through reviews, and mentored team members on best practices.",
+                "Integrated backend APIs for authentication, dynamic data handling, and business workflows, while optimizing performance and achieving Lighthouse scores of 85+."
             ],
-            technologies: ["Next.js", "TypeScript", "React", "Figma", "API Integration"]
+            technologies: ["Next.js", "TypeScript", "React", "Figma", "API Integration", "Tailwind CSS"],
+            certificateUrl: "https://drive.google.com/file/d/12G8zzeF57NLxP-bPwVAGQ97DZXdViYON/view",
+            lorUrl: "https://drive.google.com/file/d/1cbH0nlIhzUvFAwMgYnZRr3Cpr8WwgvvJ/view?usp=sharing"
         }
     ];
 
     return (
-        <section id="internships" className="py-32 relative">
+        <section id="internships" className="py-16 relative">
             <div className="container mx-auto px-8 md:px-16 lg:px-24">
                 <motion.div
                     className="mb-20"

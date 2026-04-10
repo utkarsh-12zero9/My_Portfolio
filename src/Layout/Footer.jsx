@@ -15,7 +15,7 @@ const Footer = () => {
     },
     {
       name: 'LeetCode',
-      url: 'https://leetcode.com/u/utkarsh120903/',
+      url: 'https://leetcode.com/utkarsh_12zero9',
       icon: <SiLeetcode className="w-5 h-5" />,
     },
     {

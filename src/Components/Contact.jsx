@@ -47,7 +47,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
+    <section id="contact" className="py-16 relative overflow-hidden">
       <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10">
         <div className="max-w-4xl mx-auto">
           <motion.div
