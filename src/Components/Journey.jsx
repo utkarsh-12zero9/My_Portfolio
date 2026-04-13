@@ -53,37 +53,35 @@ const journey = [
 ];
 
 const JourneyCard = ({ milestone, index }) => {
+    const isEven = index % 2 === 0;
+
     return (
-        <div className={`flex flex-col md:flex-row gap-8 mb-20 relative ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-            {/* Year & Node */}
-            <div className="flex-1 flex flex-col items-center md:items-end md:text-right">
-                {index % 2 === 0 ? (
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <span className="text-5xl md:text-7xl font-bold font-['Montserrat'] text-white/10 group-hover:text-[#00D4B4]/20 transition-colors">
-                            {milestone.year}
-                        </span>
-                        <h3 className="text-xl md:text-2xl font-bold text-white mt-2 font-['Montserrat']">
-                            {milestone.title}
-                        </h3>
-                        <p className="text-[#00D4B4] text-sm font-medium mt-1 uppercase tracking-widest">
-                            {milestone.status}
-                        </p>
-                    </motion.div>
-                ) : (
-                    <div className="hidden md:block w-full" />
-                )}
+        <div className={`flex flex-col md:flex-row gap-8 mb-16 md:mb-24 relative pl-10 md:pl-0 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+            {/* Heading Section (Year, Title, Status) */}
+            <div className={`flex-1 flex flex-col items-start md:items-inherit ${isEven ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}>
+                <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <span className="text-4xl md:text-7xl font-bold font-['Montserrat'] text-white/10 group-hover:text-[#00D4B4]/20 transition-colors">
+                        {milestone.year}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mt-1 md:mt-2 font-['Montserrat']">
+                        {milestone.title}
+                    </h3>
+                    <p className="text-[#00D4B4] text-xs md:text-sm font-medium mt-1 uppercase tracking-widest">
+                        {milestone.status}
+                    </p>
+                </motion.div>
             </div>
 
             {/* Timeline Center Node */}
-            <div className="relative flex justify-center">
-                <div className="w-0.5 h-full bg-white/10 absolute top-0 bottom-0" />
+            <div className="absolute left-0 top-0 bottom-[-64px] md:bottom-0 md:relative md:left-auto md:top-auto md:flex md:justify-center md:w-auto">
+                <div className="w-0.5 h-full bg-white/10 absolute top-0 bottom-0 left-[7px] md:left-1/2 md:-translate-x-1/2" />
                 <motion.div
-                    className="w-4 h-4 rounded-full bg-[#050505] border-4 border-[#00D4B4] relative z-10"
+                    className="w-4 h-4 rounded-full bg-[#050505] border-4 border-[#00D4B4] relative z-10 mt-2 md:mt-0"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
@@ -91,41 +89,19 @@ const JourneyCard = ({ milestone, index }) => {
                 />
             </div>
 
-            {/* Description */}
-            <div className="flex-1 flex flex-col items-center md:items-start md:text-left">
-                {index % 2 !== 0 ? (
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <span className="text-5xl md:text-7xl font-bold font-['Montserrat'] text-white/10">
-                            {milestone.year}
-                        </span>
-                        <h3 className="text-xl md:text-2xl font-bold text-white mt-2 font-['Montserrat']">
-                            {milestone.title}
-                        </h3>
-                        <p className="text-[#00D4B4] text-sm font-medium mt-1 uppercase tracking-widest">
-                            {milestone.status}
-                        </p>
-                        <p className="mt-4 text-gray-400 text-lg leading-relaxed font-['Inter'] max-w-md">
-                            {milestone.description}
-                        </p>
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="w-full"
-                    >
-                        <p className="mt-4 text-gray-400 text-lg leading-relaxed font-['Inter'] max-w-md">
-                            {milestone.description}
-                        </p>
-                    </motion.div>
-                )}
+            {/* Summary Section (Description) */}
+            <div className={`flex-1 flex flex-col items-start ${isEven ? 'md:items-start md:text-left' : 'md:items-end md:text-right'}`}>
+                <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="w-full flex flex-col items-start md:block"
+                >
+                    <p className={`mt-3 md:mt-4 text-gray-400 text-base md:text-lg leading-relaxed font-['Inter'] max-w-md ${!isEven ? 'md:text-right md:ml-auto' : 'md:text-left'}`}>
+                        {milestone.description}
+                    </p>
+                </motion.div>
             </div>
         </div>
     );
