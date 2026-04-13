@@ -72,8 +72,6 @@ const App = () => {
       <Hero />
       <About />
       <Internships />
-      <Journey />
-      <Projects />
       <section id="dsa" className="py-12 bg-[#050505]">
         <div className="container mx-auto px-6 lg:px-12">
           <DSAStats codolioData={codolioData} />
@@ -84,6 +82,8 @@ const App = () => {
           <GithubStats username={githubUsername} />
         </div>
       </section>
+      <Projects />
+      <Journey />
       <Resume />
       <Contact />
       <Footer />

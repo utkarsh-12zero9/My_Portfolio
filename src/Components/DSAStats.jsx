@@ -8,7 +8,7 @@ const DSAStats = ({ codolioData }) => {
 
     // --- DATA PROCESSING HOOKS ---
     const platformStats = useMemo(() => codolioData?.platformProfiles?.platformProfiles || [], [codolioData]);
-    
+
     const aggregatedData = useMemo(() => {
         if (!platformStats.length) return null;
 
@@ -108,7 +108,7 @@ const DSAStats = ({ codolioData }) => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* Score Cards */}
                 <div className="lg:col-span-4 h-full flex flex-col gap-6">
-                    <motion.div 
+                    <motion.div
                         className="flex-1 bg-gradient-to-br from-[#0a0a0a] to-[#0d0d0d] p-8 rounded-[2rem] border border-white/5 flex flex-col items-center justify-center text-center group hover:border-[#00D4B4]/20 transition-colors"
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -119,7 +119,7 @@ const DSAStats = ({ codolioData }) => {
                             {aggregatedData.totalQuestions}
                         </h4>
                     </motion.div>
-                    <motion.div 
+                    <motion.div
                         className="flex-1 bg-gradient-to-br from-[#0a0a0a] to-[#0d0d0d] p-8 rounded-[2rem] border border-white/5 flex flex-col items-center justify-center text-center group hover:border-[#0092ff]/20 transition-colors"
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -134,7 +134,7 @@ const DSAStats = ({ codolioData }) => {
                 </div>
 
                 {/* Heatmap Section */}
-                <motion.div 
+                <motion.div
                     className="lg:col-span-8 bg-[#0a0a0a] p-8 rounded-[2.5rem] border border-white/5 overflow-hidden flex flex-col"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -165,14 +165,14 @@ const DSAStats = ({ codolioData }) => {
                                 const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i, 1));
                                 const monthName = months[d.getUTCMonth()];
                                 const year = d.getUTCFullYear();
-                                
+
                                 // Days in this month
                                 const daysInMonth = new Date(year, d.getUTCMonth() + 1, 0).getDate();
                                 const startDay = d.getUTCDay(); // 0 (Sun) to 6 (Sat)
-                                
+
                                 const weeks = [];
                                 let currentWeek = Array(7).fill(null);
-                                
+
                                 // Fill first week padding
                                 // Note: We align days 0-6 (Sun-Sat)
                                 for (let day = 1; day <= daysInMonth; day++) {
@@ -180,7 +180,7 @@ const DSAStats = ({ codolioData }) => {
                                     const dayOfWeek = date.getUTCDay();
                                     const ts = Math.floor(date.getTime() / 1000).toString();
                                     const count = aggregatedData.fullCalendar[ts] || 0;
-                                    
+
                                     let intensity = 0;
                                     if (count > 0) intensity = 1;
                                     if (count > 2) intensity = 2;
@@ -194,7 +194,7 @@ const DSAStats = ({ codolioData }) => {
                                         currentWeek = Array(7).fill(null);
                                     }
                                 }
-                                
+
                                 monthBlocks.push({ monthName, weeks });
                             }
 
@@ -207,10 +207,10 @@ const DSAStats = ({ codolioData }) => {
                                                     if (!day) return <div key={k} className="w-3.5 h-3.5 rounded-[3px] bg-transparent" />;
                                                     const colors = ['bg-gray-900/40', 'bg-[#00D4B4]/20', 'bg-[#00D4B4]/40', 'bg-[#00D4B4]/70', 'bg-[#00D4B4]'];
                                                     return (
-                                                        <div 
-                                                            key={k} 
-                                                            className={`w-3.5 h-3.5 rounded-[3px] ${colors[day.intensity]} transition-all duration-300 hover:scale-125 cursor-help border border-white/5 hover:border-[#00D4B4]/50`} 
-                                                            title={`${day.count} submissons on ${day.date}`} 
+                                                        <div
+                                                            key={k}
+                                                            className={`w-3.5 h-3.5 rounded-[3px] ${colors[day.intensity]} transition-all duration-300 hover:scale-125 cursor-help border border-white/5 hover:border-[#00D4B4]/50`}
+                                                            title={`${day.count} submissons on ${day.date}`}
                                                         />
                                                     );
                                                 })}
@@ -228,7 +228,7 @@ const DSAStats = ({ codolioData }) => {
             {/* MIDDLE ROW: Contests & Rating Graph */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Total Contests Overview */}
-                <motion.div 
+                <motion.div
                     className="bg-[#0a0a0a] p-10 rounded-[2.5rem] border border-white/5"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -250,16 +250,15 @@ const DSAStats = ({ codolioData }) => {
                                 const hasContests = p.contestActivityStats?.contestActivityList?.length > 0;
 
                                 return (
-                                    <button 
-                                        key={idx} 
+                                    <button
+                                        key={idx}
                                         onClick={() => hasContests && setActiveGraphPlatform(p.platform)}
-                                        className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 ${
-                                            isActive 
-                                                ? 'bg-[#00D4B4]/10 border-[#00D4B4] shadow-[0_0_20px_rgba(0,212,180,0.1)]' 
-                                                : hasContests 
-                                                    ? 'bg-white/[0.03] border-white/5 hover:border-white/20 cursor-pointer' 
+                                        className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 ${isActive
+                                                ? 'bg-[#00D4B4]/10 border-[#00D4B4] shadow-[0_0_20px_rgba(0,212,180,0.1)]'
+                                                : hasContests
+                                                    ? 'bg-white/[0.03] border-white/5 hover:border-white/20 cursor-pointer'
                                                     : 'bg-white/[0.01] border-transparent opacity-50 cursor-not-allowed'
-                                        }`}
+                                            }`}
                                     >
                                         <div className="flex items-center gap-3">
                                             {p.platform === 'leetcode' && <SiLeetcode className={isActive ? 'text-[#00D4B4]' : 'text-orange-400'} />}
@@ -279,7 +278,7 @@ const DSAStats = ({ codolioData }) => {
                 </motion.div>
 
                 {/* Rating Graph (SVG) */}
-                <motion.div 
+                <motion.div
                     className="bg-[#0a0a0a] p-10 rounded-[2.5rem] border border-white/5 flex flex-col"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -376,7 +375,7 @@ const DSAStats = ({ codolioData }) => {
             {/* LOWER ROW: Topic Analysis & Progress Donuts */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 {/* Topic Analysis Bar Chart */}
-                <motion.div 
+                <motion.div
                     className="lg:col-span-8 bg-[#0a0a0a] p-10 rounded-[2.5rem] border border-white/5"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -394,7 +393,7 @@ const DSAStats = ({ codolioData }) => {
                                         <span className="text-[#00D4B4] font-mono group-hover:scale-110 transition-transform">{count}</span>
                                     </div>
                                     <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                                        <motion.div 
+                                        <motion.div
                                             className="h-full bg-gradient-to-r from-blue-600 to-[#00D4B4]"
                                             initial={{ width: 0 }}
                                             whileInView={{ width: `${width}%` }}
@@ -409,34 +408,34 @@ const DSAStats = ({ codolioData }) => {
 
                 {/* Progress Donuts Column */}
                 <div className="lg:col-span-4 flex flex-col gap-6">
-                    <motion.div 
+                    <motion.div
                         className="bg-[#0a0a0a] p-8 rounded-[2.5rem] border border-white/5 flex flex-col items-center flex-1"
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h4 className="text-lg font-bold text-white font-['Montserrat'] mb-6">Mastery Breakdown</h4>
+                        <h4 className="text-lg font-bold text-white font-['Montserrat'] mb-6">Leetcode Breakdown</h4>
                         <div className="relative mb-6">
                             <svg className="w-36 h-36 -rotate-90">
                                 <circle cx="72" cy="72" r="66" stroke="#1f2937" strokeWidth="10" fill="transparent" />
-                                <circle 
-                                    cx="72" cy="72" r="66" 
-                                    stroke="#00D4B4" strokeWidth="10" fill="transparent" 
-                                    strokeDasharray="414.7" 
+                                <circle
+                                    cx="72" cy="72" r="66"
+                                    stroke="#00D4B4" strokeWidth="10" fill="transparent"
+                                    strokeDasharray="414.7"
                                     strokeDashoffset={414.7 - (414.7 * (aggregatedData.diffStats.easy / aggregatedData.diffStats.total))}
                                     strokeLinecap="round"
                                 />
-                                <circle 
-                                    cx="72" cy="72" r="54" 
-                                    stroke="#eab308" strokeWidth="10" fill="transparent" 
-                                    strokeDasharray="339.3" 
+                                <circle
+                                    cx="72" cy="72" r="54"
+                                    stroke="#eab308" strokeWidth="10" fill="transparent"
+                                    strokeDasharray="339.3"
                                     strokeDashoffset={339.3 - (339.3 * (aggregatedData.diffStats.medium / aggregatedData.diffStats.total))}
                                     strokeLinecap="round"
                                 />
-                                <circle 
-                                    cx="72" cy="72" r="42" 
-                                    stroke="#ef4444" strokeWidth="10" fill="transparent" 
-                                    strokeDasharray="263.9" 
+                                <circle
+                                    cx="72" cy="72" r="42"
+                                    stroke="#ef4444" strokeWidth="10" fill="transparent"
+                                    strokeDasharray="263.9"
                                     strokeDashoffset={263.9 - (263.9 * (aggregatedData.diffStats.hard / aggregatedData.diffStats.total))}
                                     strokeLinecap="round"
                                 />
@@ -462,19 +461,19 @@ const DSAStats = ({ codolioData }) => {
                         </div>
                     </motion.div>
 
-                    <motion.div 
+                    <motion.div
                         className="bg-[#0a0a0a] p-6 rounded-[2.5rem] border border-white/5 flex flex-col items-center flex-1"
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
                     >
-                         <h4 className="text-base font-bold text-white font-['Montserrat'] mb-4 flex items-center gap-2">
+                        <h4 className="text-base font-bold text-white font-['Montserrat'] mb-4 flex items-center gap-2">
                             <FaAward className="text-yellow-500" /> Recent Awards
                         </h4>
                         <div className="flex flex-wrap justify-center gap-3">
                             {aggregatedData.allBadges.slice(0, 6).map((badge, idx) => (
-                                <motion.div 
+                                <motion.div
                                     key={idx}
                                     className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2 group hover:scale-110 transition-transform"
                                     title={badge.name}
@@ -506,7 +505,7 @@ const DSAStats = ({ codolioData }) => {
                         }[p.platform];
 
                         return (
-                            <motion.div 
+                            <motion.div
                                 key={idx}
                                 className={`bg-[#0a0a0a] p-8 rounded-[3rem] border-2 ${colors} relative overflow-hidden group shadow-2xl`}
                                 initial={{ opacity: 0, y: 30 }}
@@ -517,7 +516,7 @@ const DSAStats = ({ codolioData }) => {
                                 <div className="absolute -top-10 -right-10 text-9xl text-white/[0.02] rotate-12 group-hover:rotate-0 transition-transform duration-700">
                                     {icon}
                                 </div>
-                                
+
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-4 mb-6">
                                         <div className={`p-4 bg-white/5 rounded-2xl text-3xl group-hover:scale-110 transition-transform`}>
@@ -542,7 +541,7 @@ const DSAStats = ({ codolioData }) => {
                                                     </div>
                                                 )}
                                             </div>
-                                            
+
                                             {user.rank && (
                                                 <div className="pt-4 border-t border-white/5">
                                                     <div className="flex items-center justify-between">
@@ -560,7 +559,8 @@ const DSAStats = ({ codolioData }) => {
                 </div>
             </div>
 
-            <style dangerouslySetInnerHTML={{ __html: `
+            <style dangerouslySetInnerHTML={{
+                __html: `
                 .custom-scrollbar::-webkit-scrollbar {
                     height: 4px;
                 }
