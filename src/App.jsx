@@ -8,13 +8,33 @@ import Footer from "./Layout/Footer";
 import Resume from "./Components/Resume";
 import CustomCursor from "./Components/CustomCursor";
 import { useEffect, useState } from "react";
-import Stats from "./Components/Stats";
+import DSAStats from "./Components/DSAStats";
+import GithubStats from "./Components/GithubStats";
 import Journey from "./Components/Journey";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [codolioData, setCodolioData] = useState(null);
+  const [statsError, setStatsError] = useState(null);
+  const githubUsername = "utkarsh-12zero9";
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://api.codolio.com/profile?userKey=${githubUsername}`);
+        const data = await response.json();
+        if (data.status.success) {
+          setCodolioData(data.data);
+        } else {
+          setStatsError("Profile data not available");
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setStatsError("Metrics sync failed");
+      }
+    };
+
+    fetchData();
     setTimeout(() => setLoading(false), 900);
   }, []);
 
@@ -54,7 +74,16 @@ const App = () => {
       <Internships />
       <Journey />
       <Projects />
-      <Stats />
+      <section id="dsa" className="py-12 bg-[#050505]">
+        <div className="container mx-auto px-6 lg:px-12">
+          <DSAStats codolioData={codolioData} />
+        </div>
+      </section>
+      <section id="github" className="py-12 bg-[#050505]">
+        <div className="container mx-auto px-6 lg:px-12">
+          <GithubStats username={githubUsername} />
+        </div>
+      </section>
       <Resume />
       <Contact />
       <Footer />
