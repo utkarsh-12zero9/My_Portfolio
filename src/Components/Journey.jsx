@@ -65,7 +65,7 @@ const JourneyCard = ({ milestone, index }) => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className="text-4xl md:text-7xl font-bold font-['Montserrat'] text-white/10 group-hover:text-[#00D4B4]/20 transition-colors">
+                    <span className="text-4xl md:text-7xl font-bold font-['Montserrat'] text-white/30 group-hover:text-[#00D4B4]/20 transition-colors">
                         {milestone.year}
                     </span>
                     <h3 className="text-xl md:text-2xl font-bold text-white mt-1 md:mt-2 font-['Montserrat']">

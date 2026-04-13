@@ -90,7 +90,7 @@ const DSAStats = ({ codolioData }) => {
     if (!aggregatedData) return null;
 
     return (
-        <div className="space-y-12">
+        <div className="space-y-12 px-12">
             {/* Header / Intro */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
@@ -98,7 +98,8 @@ const DSAStats = ({ codolioData }) => {
                         <FaCode className="text-3xl text-[#00D4B4]" />
                     </div>
                     <div>
-                        <h3 className="text-2xl text-white font-['Montserrat'] font-bold">DSA Dashboard</h3>
+                        <h3 className="text-2xl text-white font-['Montserrat'] font-bold">DSA
+                            <span className="text-[#00D4B4]"> Dashboard</span></h3>
                         <p className="text-gray-500 text-sm">Real-time competitive programming analytics</p>
                     </div>
                 </div>
@@ -254,10 +255,10 @@ const DSAStats = ({ codolioData }) => {
                                         key={idx}
                                         onClick={() => hasContests && setActiveGraphPlatform(p.platform)}
                                         className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 ${isActive
-                                                ? 'bg-[#00D4B4]/10 border-[#00D4B4] shadow-[0_0_20px_rgba(0,212,180,0.1)]'
-                                                : hasContests
-                                                    ? 'bg-white/[0.03] border-white/5 hover:border-white/20 cursor-pointer'
-                                                    : 'bg-white/[0.01] border-transparent opacity-50 cursor-not-allowed'
+                                            ? 'bg-[#00D4B4]/10 border-[#00D4B4] shadow-[0_0_20px_rgba(0,212,180,0.1)]'
+                                            : hasContests
+                                                ? 'bg-white/[0.03] border-white/5 hover:border-white/20 cursor-pointer'
+                                                : 'bg-white/[0.01] border-transparent opacity-50 cursor-not-allowed'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3">
