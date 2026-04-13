@@ -51,8 +51,8 @@ const App = () => {
       <Header />
       <Hero />
       <About />
-      <Journey />
       <Internships />
+      <Journey />
       <Projects />
       <Stats />
       <Resume />

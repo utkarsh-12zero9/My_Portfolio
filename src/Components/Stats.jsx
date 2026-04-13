@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { FaGithub, FaCode, FaTrophy, FaExternalLinkAlt } from 'react-icons/fa';
 import { SiLeetcode, SiGeeksforgeeks, SiCodechef, SiCodeforces } from 'react-icons/si';
 
@@ -92,7 +93,7 @@ const Stats = () => {
                     {/* ---------------- CODOLIO ---------------- */}
                     <div className="space-y-6">
                         <div className="flex items-center gap-3">
-                            <SiLeetcode className="text-3xl text-orange-400" />
+                            <FaCode className="text-3xl text-[#00D4B4]" />
                             <h3 className="text-2xl text-white font-['Montserrat'] font-bold">Codolio Metrics</h3>
                         </div>
 
@@ -205,33 +206,60 @@ const Stats = () => {
                 </div>
 
                 {/* ---------------- CODING PLATFORMS ---------------- */}
-                <div className="space-y-8">
+                <div className="space-y-8 relative overflow-hidden group/marquee_section">
                     <div className="flex items-center gap-3">
                         <FaCode className="text-3xl text-[#00D4B4]" />
                         <h3 className="text-2xl text-white font-['Montserrat'] font-bold">Coding Profiles</h3>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                        {codingProfiles.map((profile, index) => (
-                            <a
-                                key={index}
-                                href={profile.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`group p-6 bg-[#0a0a0a] border border-white/5 rounded-2xl flex flex-col items-center gap-4 transition-all duration-300 hover:bg-white/5 ${profile.color} hover:-translate-y-1`}
-                            >
-                                <div className="text-4xl transform group-hover:scale-110 transition-transform">
-                                    {profile.icon}
-                                </div>
-                                <div className="flex flex-col items-center">
-                                    <span className="text-white font-bold text-sm tracking-wide">{profile.name}</span>
-                                    <span className="text-gray-500 text-[10px] mt-1 flex items-center gap-1 group-hover:text-[#00D4B4] transition-colors">
-                                        View Profile <FaExternalLinkAlt className="text-[8px]" />
-                                    </span>
-                                </div>
-                            </a>
-                        ))}
+                    {/* Gradient Fades */}
+                    <div className="absolute left-0 top-14 bottom-0 w-24 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 top-14 bottom-0 w-24 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+
+                    <div className="flex overflow-hidden py-10">
+                        <motion.div
+                            className="flex gap-6 shrink-0"
+                            animate={{
+                                x: ["0%", "-50%"],
+                            }}
+                            transition={{
+                                duration: 30,
+                                repeat: Infinity,
+                                ease: "linear",
+                            }}
+                            style={{ width: "fit-content" }}
+                            // The interaction: Pause on hover
+                            whileHover={{ transition: { duration: 0 } }} // This doesn't pause the running animation unfortunately.
+                        >
+                            {/* Double the array for seamless scrolling */}
+                            {[...codingProfiles, ...codingProfiles].map((profile, index) => (
+                                <a
+                                    key={index}
+                                    href={profile.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`group/card min-w-[220px] p-8 bg-[#0a0a0a] border border-white/5 rounded-3xl flex flex-col items-center gap-5 transition-all duration-300 hover:bg-white/5 ${profile.color} hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]`}
+                                >
+                                    <div className="text-5xl transform group-hover/card:scale-110 group-hover/card:rotate-3 transition-all duration-500">
+                                        {profile.icon}
+                                    </div>
+                                    <div className="flex flex-col items-center text-center">
+                                        <span className="text-white font-bold text-lg tracking-wide group-hover/card:text-[#00D4B4] transition-colors">{profile.name}</span>
+                                        <span className="text-gray-500 text-xs mt-2 flex items-center gap-2 group-hover/card:text-white transition-opacity">
+                                            Visit Link <FaExternalLinkAlt className="text-[10px]" />
+                                        </span>
+                                    </div>
+                                </a>
+                            ))}
+                        </motion.div>
                     </div>
+
+                    {/* Add custom CSS to handle the pause-on-hover logic robustly */}
+                    <style dangerouslySetInnerHTML={{ __html: `
+                        .group\\/marquee_section:hover .flex > div {
+                            animation-play-state: paused !important;
+                        }
+                    `}} />
                 </div>
             </div>
         </section>
