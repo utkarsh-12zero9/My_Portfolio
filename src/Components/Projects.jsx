@@ -100,7 +100,7 @@ const Projects = () => {
         {
             title: "ExamPortal",
             description: "Designed and developed a secure, scalable online exam portal enabling educational institutions to manage exams and users with React, Redux Toolkit, Tailwind CSS, Lucide React, and React Router.",
-            category: "Full Stack",
+            category: "EdTech",
             link: 'https://modern-online-exam-portal.netlify.app/',
             image: ExamPortal,
             tech: ["React", "Redux Toolkit", "Node.js", "MongoDB", "Tailwind CSS", "Lucide React"]
