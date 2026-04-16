@@ -395,7 +395,7 @@ const DSAStats = ({ codolioData }) => {
                                     </div>
                                     <div className="h-2 bg-white/5 rounded-full overflow-hidden">
                                         <motion.div
-                                            className="h-full bg-gradient-to-r from-blue-600 to-[#00D4B4]"
+                                            className="h-full bg-emerald-400"
                                             initial={{ width: 0 }}
                                             whileInView={{ width: `${width}%` }}
                                             transition={{ duration: 0.8, delay: idx * 0.05 }}
@@ -491,7 +491,7 @@ const DSAStats = ({ codolioData }) => {
             <div>
                 <h4 className="text-xl md:text-2xl font-bold text-white font-['Montserrat'] mb-5 md:mb-8 text-center uppercase tracking-widest">Platform Rankings</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-                    {aggregatedData.platforms.map((p, idx) => {
+                    {aggregatedData.platforms.filter(p => p.platform !== 'geeksforgeeks').map((p, idx) => {
                         const user = p.userStats || {};
                         const colors = {
                             leetcode: 'border-orange-400/20 text-orange-400',
