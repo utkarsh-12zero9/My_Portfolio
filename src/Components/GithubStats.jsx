@@ -8,7 +8,7 @@ const GithubStats = ({ username }) => {
     const githubTopLangsUrl = `https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=${username}&layout=compact&langs_count=6&hide_progress=false${themeParams}`;
 
     return (
-        <div className="space-y-8 px-12 h-full">
+        <div className="space-y-8 h-full">
             <div className="flex items-center gap-4">
                 <div className="p-3 bg-white/5 rounded-2xl border border-white/10 group-hover:border-[#00D4B4]/50 transition-colors">
                     <FaGithub className="text-3xl text-white" />

@@ -90,7 +90,7 @@ const DSAStats = ({ codolioData }) => {
     if (!aggregatedData) return null;
 
     return (
-        <div className="space-y-12 px-12">
+        <div className="space-y-8 md:space-y-12">
             {/* Header / Intro */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
@@ -106,29 +106,29 @@ const DSAStats = ({ codolioData }) => {
             </div>
 
             {/* TOP ROW: Summary Stats & Heatmap */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
                 {/* Score Cards */}
-                <div className="lg:col-span-4 h-full flex flex-col gap-6">
+                <div className="lg:col-span-4 h-full grid grid-cols-2 lg:flex lg:flex-col gap-4 md:gap-6">
                     <motion.div
-                        className="flex-1 bg-gradient-to-br from-[#0a0a0a] to-[#0d0d0d] p-8 rounded-[2rem] border border-white/5 flex flex-col items-center justify-center text-center group hover:border-[#00D4B4]/20 transition-colors"
+                        className="bg-gradient-to-br from-[#0a0a0a] to-[#0d0d0d] p-4 sm:p-6 md:p-8 rounded-[2rem] border border-white/5 flex flex-col items-center justify-center text-center group hover:border-[#00D4B4]/20 transition-colors"
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                     >
                         <p className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-4">Total Questions</p>
-                        <h4 className="text-7xl font-bold text-white font-['Montserrat'] group-hover:text-[#00D4B4] transition-colors">
+                        <h4 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white font-['Montserrat'] group-hover:text-[#00D4B4] transition-colors">
                             {aggregatedData.totalQuestions}
                         </h4>
                     </motion.div>
                     <motion.div
-                        className="flex-1 bg-gradient-to-br from-[#0a0a0a] to-[#0d0d0d] p-8 rounded-[2rem] border border-white/5 flex flex-col items-center justify-center text-center group hover:border-[#0092ff]/20 transition-colors"
+                        className="bg-gradient-to-br from-[#0a0a0a] to-[#0d0d0d] p-4 sm:p-6 md:p-8 rounded-[2rem] border border-white/5 flex flex-col items-center justify-center text-center group hover:border-[#0092ff]/20 transition-colors"
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
                     >
                         <p className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-4">Total Active Days</p>
-                        <h4 className="text-7xl font-bold text-white font-['Montserrat'] group-hover:text-[#0092ff] transition-colors">
+                        <h4 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white font-['Montserrat'] group-hover:text-[#0092ff] transition-colors">
                             {aggregatedData.totalActiveDays}
                         </h4>
                     </motion.div>
@@ -136,12 +136,12 @@ const DSAStats = ({ codolioData }) => {
 
                 {/* Heatmap Section */}
                 <motion.div
-                    className="lg:col-span-8 bg-[#0a0a0a] p-8 rounded-[2.5rem] border border-white/5 overflow-hidden flex flex-col"
+                    className="lg:col-span-8 bg-[#0a0a0a] p-4 sm:p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 overflow-hidden flex flex-col"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                 >
-                    <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center justify-between mb-4 md:mb-8 flex-wrap gap-2">
                         <div>
                             <h4 className="text-xl font-bold text-white font-['Montserrat']">Consistency Heatmap</h4>
                             <p className="text-gray-500 text-xs mt-1 lowercase">daily submissions over the past months</p>
@@ -227,18 +227,18 @@ const DSAStats = ({ codolioData }) => {
             </div>
 
             {/* MIDDLE ROW: Contests & Rating Graph */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
                 {/* Total Contests Overview */}
                 <motion.div
-                    className="bg-[#0a0a0a] p-10 rounded-[2.5rem] border border-white/5"
+                    className="bg-[#0a0a0a] p-5 sm:p-7 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border border-white/5"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h4 className="text-2xl font-bold text-white font-['Montserrat'] mb-8">Contest Overview</h4>
-                    <div className="flex items-center gap-12">
+                    <h4 className="text-xl md:text-2xl font-bold text-white font-['Montserrat'] mb-5 md:mb-8">Contest Overview</h4>
+                    <div className="flex items-center gap-6 md:gap-12">
                         <div className="text-center">
-                            <span className="text-8xl font-black text-[#00D4B4] font-['Montserrat'] leading-none">
+                            <span className="text-5xl sm:text-7xl md:text-8xl font-black text-[#00D4B4] font-['Montserrat'] leading-none">
                                 {aggregatedData.totalContests}
                             </span>
                             <p className="text-gray-500 uppercase tracking-tighter text-sm mt-2">Contests Done</p>
@@ -280,18 +280,18 @@ const DSAStats = ({ codolioData }) => {
 
                 {/* Rating Graph (SVG) */}
                 <motion.div
-                    className="bg-[#0a0a0a] p-10 rounded-[2.5rem] border border-white/5 flex flex-col"
+                    className="bg-[#0a0a0a] p-5 sm:p-7 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 flex flex-col"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
                 >
-                    <div className="flex items-start justify-between mb-8">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-5 md:mb-8 gap-3">
                         <div>
-                            <h4 className="text-2xl font-bold text-white font-['Montserrat']">Rating History</h4>
+                            <h4 className="text-xl md:text-2xl font-bold text-white font-['Montserrat']">Rating History</h4>
                             <p className="text-gray-500 text-sm mt-1">performance across last 10 contests</p>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                             <div className={`flex items-center gap-1.5 text-xs transition-colors ${activeGraphPlatform === 'leetcode' ? 'text-[#00D4B4]' : 'text-gray-500'}`}>
                                 <div className={`w-2 h-2 rounded-full ${activeGraphPlatform === 'leetcode' ? 'bg-[#00D4B4]' : 'bg-gray-800'}`} /> LeetCode
                             </div>
@@ -374,15 +374,15 @@ const DSAStats = ({ codolioData }) => {
             </div>
 
             {/* LOWER ROW: Topic Analysis & Progress Donuts */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8">
                 {/* Topic Analysis Bar Chart */}
                 <motion.div
-                    className="lg:col-span-8 bg-[#0a0a0a] p-10 rounded-[2.5rem] border border-white/5"
+                    className="lg:col-span-8 bg-[#0a0a0a] p-5 sm:p-7 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border border-white/5"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h4 className="text-2xl font-bold text-white font-['Montserrat'] mb-8">DSA Topic Analysis</h4>
+                    <h4 className="text-xl md:text-2xl font-bold text-white font-['Montserrat'] mb-5 md:mb-8">DSA Topic Analysis</h4>
                     <div className="space-y-4">
                         {aggregatedData.sortedTopics.map(([topic, count], idx) => {
                             const maxCount = aggregatedData.sortedTopics[0][1];
@@ -410,7 +410,7 @@ const DSAStats = ({ codolioData }) => {
                 {/* Progress Donuts Column */}
                 <div className="lg:col-span-4 flex flex-col gap-6">
                     <motion.div
-                        className="bg-[#0a0a0a] p-8 rounded-[2.5rem] border border-white/5 flex flex-col items-center flex-1"
+                        className="bg-[#0a0a0a] p-5 sm:p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 flex flex-col items-center flex-1"
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -463,7 +463,7 @@ const DSAStats = ({ codolioData }) => {
                     </motion.div>
 
                     <motion.div
-                        className="bg-[#0a0a0a] p-6 rounded-[2.5rem] border border-white/5 flex flex-col items-center flex-1"
+                        className="bg-[#0a0a0a] p-4 sm:p-5 md:p-6 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 flex flex-col items-center flex-1"
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -489,8 +489,8 @@ const DSAStats = ({ codolioData }) => {
 
             {/* BOTTOM: PLATFORM RANKINGS GRID */}
             <div>
-                <h4 className="text-2xl font-bold text-white font-['Montserrat'] mb-8 text-center uppercase tracking-widest">Platform Rankings</h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <h4 className="text-xl md:text-2xl font-bold text-white font-['Montserrat'] mb-5 md:mb-8 text-center uppercase tracking-widest">Platform Rankings</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                     {aggregatedData.platforms.map((p, idx) => {
                         const user = p.userStats || {};
                         const colors = {
@@ -508,7 +508,7 @@ const DSAStats = ({ codolioData }) => {
                         return (
                             <motion.div
                                 key={idx}
-                                className={`bg-[#0a0a0a] p-8 rounded-[3rem] border-2 ${colors} relative overflow-hidden group shadow-2xl`}
+                                className={`bg-[#0a0a0a] p-5 sm:p-6 md:p-8 rounded-[2rem] md:rounded-[3rem] border-2 ${colors} relative overflow-hidden group shadow-2xl`}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
