@@ -52,7 +52,7 @@ const Header = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="glass-panel backdrop-blur-md rounded-full px-6 py-3 flex items-center justify-between md:gap-58 shadow-2xl shadow-black/20">
+        <div className="glass-panel backdrop-blur-md rounded-full px-6 py-3 flex items-center justify-between md:gap-140 shadow-2xl shadow-black/20">
           {/* Logo */}
           <motion.a
             href="#home"
