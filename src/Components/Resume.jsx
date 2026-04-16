@@ -40,8 +40,8 @@ const Resume = () => {
             </div>
 
             <motion.a
-              href="/resume.pdf"
-              download="Utkarsh_Kumar_Singh_SDE_Resume.pdf"
+              href="/Utkarsh_Frontend_Resume.pdf"
+              download="Utkarsh_Frontend_Resume.pdf"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#00D4B4] text-black font-bold rounded-full hover:bg-white transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
