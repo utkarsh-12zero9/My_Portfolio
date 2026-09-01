@@ -44,10 +44,10 @@ const About = () => {
 
                         <div className="space-y-6 text-lg text-gray-400 font-['Inter'] leading-relaxed">
                             <p>
-                                I’m a passionate Frontend Developer and Team Lead based in Ghaziabad, India. My journey in tech started with a curiosity for how things work on the web, which evolved into a career building scalable, high-fidelity applications.
+                                I’m a passionate Software Engineer based in Ghaziabad, India. My journey in tech started with a curiosity for how things work on the web, which evolved into engineering scalable, high-performance web applications and AI-driven solutions.
                             </p>
                             <p>
-                                I specialize in modern frontend ecosystems like React, Next.js, and TypeScript. I have a strong foundation in DSA and a keen eye for translating complex Figma designs into pixel-perfect interfaces. Currently, I'm expanding my horizons into Machine Learning and AI.
+                                I specialize in modern full-stack development using React, Next.js, and TypeScript, alongside Generative AI (RAG, LLMs), Machine Learning, and Deep Learning. I have a solid foundation in DSA with 500+ solved problems and a passion for building user-centric, high-impact products.
                             </p>
                         </div>
 

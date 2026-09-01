@@ -12,12 +12,13 @@ const InternshipCard = ({ internship, index }) => {
 
     return (
         <motion.div
-            className="group relative border border-white/10 bg-gray-900/40 overflow-hidden rounded-3xl hover:border-white/20 transition-colors duration-500"
+            className="group relative border border-white/10 bg-gray-950/60 overflow-hidden rounded-3xl hover:border-[#00F5D4]/60 hover:shadow-[0_0_35px_rgba(0,245,212,0.16)] transition-all duration-500 backdrop-blur-xl"
             onMouseMove={handleMouseMove}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
+            whileHover={{ y: -6 }}
         >
             <motion.div
                 className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
@@ -25,7 +26,8 @@ const InternshipCard = ({ internship, index }) => {
                     background: useMotionTemplate`
                         radial-gradient(
                             650px circle at ${mouseX}px ${mouseY}px,
-                            rgba(0, 212, 180, 0.15),
+                            rgba(0, 245, 212, 0.32),
+                            rgba(123, 63, 228, 0.16) 40%,
                             transparent 80%
                         )
                     `,
@@ -96,34 +98,36 @@ const InternshipCard = ({ internship, index }) => {
                         </div>
 
                         {/* Certificate & LOR Links */}
-                        <div className="flex gap-3">
-                            {internship.certificateUrl && (
-                                <a
-                                    href={internship.certificateUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-[#00D4B4] rounded-xl hover:bg-white transition-colors"
-                                >
-                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                    Certificate
-                                </a>
-                            )}
-                            {internship.lorUrl && (
-                                <a
-                                    href={internship.lorUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-white/10 border border-white/10 rounded-xl hover:bg-[#00D4B4] hover:text-black transition-colors"
-                                >
-                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                    LOR
-                                </a>
-                            )}
-                        </div>
+                        {(internship.certificateUrl || internship.lorUrl) && (
+                            <div className="flex gap-3">
+                                {internship.certificateUrl && (
+                                    <a
+                                        href={internship.certificateUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-[#00D4B4] rounded-xl hover:bg-white transition-colors"
+                                    >
+                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        Certificate
+                                    </a>
+                                )}
+                                {internship.lorUrl && (
+                                    <a
+                                        href={internship.lorUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-white/10 border border-white/10 rounded-xl hover:bg-[#00D4B4] hover:text-black transition-colors"
+                                    >
+                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        LOR
+                                    </a>
+                                )}
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
@@ -133,6 +137,18 @@ const InternshipCard = ({ internship, index }) => {
 
 const Internships = () => {
     const internships = [
+        {
+            company: "Apex School of Business",
+            role: "Software Engineer",
+            duration: "June 2026 - Present",
+            website: "https://apexschoolofbusiness.com/",
+            responsibilities: [
+                "Developing B2B and B2C websites using Next.js, TypeScript, and React, delivering responsive, component-based UIs.",
+                "Integrated Google Apps Script to pipe form submission data directly into Google Sheets, transforming complex AI-driven sales training content into a responsive, conversion-focused web experience.",
+                "Achieving Lighthouse score of 99 Performance, 94 Accessibility, and 91 SEO."
+            ],
+            technologies: ["Next.js", "TypeScript", "React", "Google Apps Script", "Tailwind CSS"]
+        },
         {
             company: "Rablo Innovative",
             role: "Frontend Developer & Frontend Team Lead",

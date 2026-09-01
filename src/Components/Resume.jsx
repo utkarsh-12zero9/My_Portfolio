@@ -1,7 +1,15 @@
 import { motion } from 'framer-motion';
 
 const Resume = () => {
-  const skillsPreview = ['Full-Stack Development', 'MERN Stack', 'Version Control', 'Problem Solving'];
+  const skillsPreview = [
+    'Full-Stack Development',
+    'Machine Learning & DL',
+    'Generative AI',
+    'RAG',
+    'React & Next.js',
+    'TypeScript',
+    'Problem Solving'
+  ];
 
   return (
     <section id="resume" className="py-16 relative overflow-hidden">
@@ -18,7 +26,7 @@ const Resume = () => {
 
           <div className="glass-panel p-8 md:p-12 rounded-3xl">
             <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-['Inter']">
-              I'm <span className="text-[#00D4B4] font-semibold">Utkarsh Kumar Singh</span>, a Frontend Developer and Team Lead from Ghaziabad, India. I specialize in building scalable, high-performance web applications using React, Next.js, and TypeScript, with a focus on delivering exceptional user experiences.
+              I'm <span className="text-[#00D4B4] font-semibold">Utkarsh Kumar Singh</span>, a Software Engineer from Ghaziabad, India. I specialize in building scalable, high-performance web applications using React, Next.js, and TypeScript, alongside engineering intelligent systems with Generative AI (RAG, LLMs), Machine Learning, and Deep Learning.
             </p>
 
             <div className="mb-10">
@@ -27,11 +35,11 @@ const Resume = () => {
                 {skillsPreview.map((skill, index) => (
                   <motion.span
                     key={skill}
-                    className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#00D4B4] font-mono text-sm"
+                    className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#00D4B4] font-mono text-sm shadow-sm"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05, borderColor: '#00D4B4' }}
+                    whileHover={{ scale: 1.08, borderColor: '#00D4B4', backgroundColor: 'rgba(0, 212, 180, 0.1)' }}
                   >
                     {skill}
                   </motion.span>
@@ -40,9 +48,11 @@ const Resume = () => {
             </div>
 
             <motion.a
-              href="/Utkarsh_Frontend_Resume.pdf"
-              download="Utkarsh_Frontend_Resume.pdf"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#00D4B4] text-black font-bold rounded-full hover:bg-white transition-colors"
+              href="/Utkarsh_Resume.pdf"
+              download="Utkarsh_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#00D4B4] text-black font-bold rounded-full hover:bg-white hover:shadow-[0_0_25px_rgba(0,212,180,0.4)] transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

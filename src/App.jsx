@@ -11,6 +11,17 @@ import { useEffect, useState } from "react";
 import DSAStats from "./Components/DSAStats";
 import GithubStats from "./Components/GithubStats";
 import Journey from "./Components/Journey";
+import InteractiveBackground from "./Components/InteractiveBackground";
+
+const SectionDivider = () => (
+  <div className="relative py-7 overflow-hidden pointer-events-none z-10">
+    <div className="max-w-6xl mx-auto px-8">
+      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#00F5D4]/45 to-transparent relative shadow-[0_0_10px_rgba(0,245,212,0.5)]">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#A855F7]/45 to-transparent blur-[2px]" />
+      </div>
+    </div>
+  </div>
+);
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -66,25 +77,34 @@ const App = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#00D4B4] selection:text-black">
+      <InteractiveBackground />
       <CustomCursor />
       <Header />
       <Hero />
+      <SectionDivider />
       <About />
+      <SectionDivider />
       <Internships />
-      <section id="dsa" className="py-12 bg-[#050505]">
+      <SectionDivider />
+      <Projects />
+      <SectionDivider />
+      <section id="dsa" className="py-16 relative z-10">
         <div className="container mx-auto px-6 lg:px-12">
           <DSAStats codolioData={codolioData} />
         </div>
       </section>
-      <section id="github" className="py-12 bg-[#050505]">
+      <SectionDivider />
+      <section id="github" className="py-16 relative z-10">
         <div className="container mx-auto px-6 lg:px-12">
           <GithubStats username={githubUsername} />
         </div>
       </section>
-      <Projects />
+      <SectionDivider />
       <Journey />
+      <SectionDivider />
       <Resume />
+      <SectionDivider />
       <Contact />
       <Footer />
     </div>

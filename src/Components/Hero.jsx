@@ -27,12 +27,16 @@ const Hero = () => {
                     style={{ y: y1 }}
                 >
                     <motion.div
-                        className="inline-block px-4 py-1.5 mb-6 border border-[#00D4B4]/30 rounded-full bg-[#00D4B4]/5 backdrop-blur-sm"
+                        className="inline-flex items-center gap-2.5 px-4 py-1.5 mb-6 border border-[#00D4B4]/30 rounded-full bg-[#00D4B4]/5 backdrop-blur-md shadow-[0_0_20px_rgba(0,212,180,0.15)]"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
                     >
-                        <span className="text-[#00D4B4] font-mono text-sm tracking-wider"># Available for work</span>
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00D4B4] opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00D4B4]" />
+                        </span>
+                        <span className="text-[#00D4B4] font-mono text-sm tracking-wider font-medium">Available for work</span>
                     </motion.div>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-['Montserrat'] leading-tight tracking-tighter mb-6">
@@ -46,7 +50,7 @@ const Hero = () => {
                     </h1>
 
                     <p className="text-lg md:text-xl text-gray-400 max-w-lg leading-relaxed mb-10 font-['Inter']">
-                        I'm Utkarsh, a Full Stack Developer crafting accessible, pixel-perfect interfaces with modern technologies.
+                        I'm Utkarsh, a Software Engineer crafting accessible, pixel-perfect interfaces with modern technologies.
                     </p>
 
                     <div className="flex flex-wrap gap-4">
